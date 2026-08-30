@@ -850,19 +850,39 @@ body{font-weight:400}
    Each carousel gets its own real folder as the single source of truth; nothing is mixed between folders. */
 function pad(n){return (n<10?'0':'')+n;}
 
+/* one shared poster+embed markup builder: a YouTube-linked item (v.yt) shows the real YouTube
+   thumbnail and embeds the video on click; everything else keeps using the local file untouched. */
+function reelInnerHTML(v){
+ if(v.yt){
+  return '<div class="reel playable" data-yt="'+v.yt+'"><img class="poster-vid" src="https://img.youtube.com/vi/'+v.yt+'/hqdefault.jpg" alt="" loading="lazy"><div class="cap lt">'+v.title+'</div><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>';
+ }
+ return '<div class="reel playable" data-file="'+v.file+'"><video class="poster-vid" src="'+encodeURI(v.file)+'" preload="metadata" muted playsinline></video><div class="cap lt">'+v.title+'</div><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>';
+}
+function resetYouTubeSlide(reel){
+ var iframe=reel.querySelector('iframe');
+ if(!iframe) return;
+ iframe.remove();
+ reel.classList.remove('is-playing');
+ var img=document.createElement('img');
+ img.className='poster-vid';img.alt='';img.loading='lazy';
+ img.src='https://img.youtube.com/vi/'+reel.dataset.yt+'/hqdefault.jpg';
+ reel.insertBefore(img, reel.firstChild);
+}
 function buildReelCarousel(items, screenEl, dotsEl, countEl, prevBtn, nextBtn){
  var cur=0;
  items.forEach(function(v,i){
   var s=document.createElement('div');s.className='slide'+(i===0?' active':'');
-  s.innerHTML='<div class="reel playable" data-file="'+v.file+'"><video class="poster-vid" src="'+encodeURI(v.file)+'" preload="metadata" muted playsinline></video><div class="cap lt">'+v.title+'</div><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>';
+  s.innerHTML=reelInnerHTML(v);
   screenEl.appendChild(s);
   var d=document.createElement('span');d.className='pdot'+(i===0?' on':'');d.setAttribute('data-cursor','');d.setAttribute('role','button');d.setAttribute('tabindex','0');d.setAttribute('aria-label',(i+1)+' / '+items.length);d.addEventListener('click',function(){go(i);});d.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go(i);}});dotsEl.appendChild(d);
  });
  var slides=screenEl.querySelectorAll('.slide'), dotEls=dotsEl.querySelectorAll('.pdot');
  countEl.textContent=pad(1)+' / '+pad(items.length);
  function go(i){
-  var outgoing=slides[cur].querySelector('video');
-  if(outgoing) outgoing.pause(); /* stop playback before moving on - never keeps running hidden in the background */
+  var outgoingVideo=slides[cur].querySelector('video');
+  if(outgoingVideo) outgoingVideo.pause(); /* stop playback before moving on - never keeps running hidden in the background */
+  var outgoingReel=slides[cur].querySelector('.reel[data-yt]');
+  if(outgoingReel) resetYouTubeSlide(outgoingReel);
   slides[cur].classList.remove('active');dotEls[cur].classList.remove('on');
   cur=(i+items.length)%items.length;
   slides[cur].classList.add('active');dotEls[cur].classList.add('on');
@@ -874,19 +894,19 @@ function buildReelCarousel(items, screenEl, dotsEl, countEl, prevBtn, nextBtn){
 
 /* 01 VIDEO - every real file in the current וידאו/ folder */
 var VIDEO_ITEMS=[
- {file:"וידאו/AI.mov",title:"AI"},
- {file:"וידאו/אוהב אותי לא אוהב אותי.MOV",title:"אוהב אותי לא אוהב אותי"},
- {file:"וידאו/אילוף זה יקר - הארוך.MOV",title:"אילוף זה יקר - גרסה מלאה"},
- {file:"וידאו/אילוף זה יקר - קצר.MOV",title:"אילוף זה יקר - גרסה קצרה"},
- {file:"וידאו/אפרת 3.MOV",title:"אפרת 3"},
- {file:"וידאו/אפרת סדנה - זו חוויה.MOV",title:"אפרת סדנה - זו חוויה"},
- {file:"וידאו/בל יהלומים - בסט פרנס.mp4",title:"בל יהלומים - בסט פרנס"},
- {file:"וידאו/בל יהלומים - טבעת כחולה.mp4",title:"בל יהלומים - טבעת כחולה"},
- {file:"וידאו/דסי שאלות תשובות.mov",title:"דסי שאלות תשובות"},
- {file:"וידאו/הפסד במלחמה עם לילי.mov",title:"הפסד במלחמה עם לילי"},
- {file:"וידאו/הרבנית שרית.mov",title:"הרבנית שרית"},
- {file:"וידאו/הרצאה כאן 11.mov",title:"הרצאה כאן 11"},
- {file:"וידאו/חנה תסרוקת ערב.MOV",title:"חנה תסרוקת ערב"},
+ {file:"וידאו/AI.mov",title:"AI",yt:"ZTAsBA6y5dw"},
+ {file:"וידאו/אוהב אותי לא אוהב אותי.MOV",title:"אוהב אותי לא אוהב אותי",yt:"qLhHtOv7ekA"},
+ {file:"וידאו/אילוף זה יקר - הארוך.MOV",title:"אילוף זה יקר - גרסה מלאה",yt:"5CiwTHNzAq8"},
+ {file:"וידאו/אילוף זה יקר - קצר.MOV",title:"אילוף זה יקר - גרסה קצרה",yt:"pU5_ivpmyww"},
+ {file:"וידאו/אפרת 3.MOV",title:"אפרת 3",yt:"xYfwpP_xQQE"},
+ {file:"וידאו/אפרת סדנה - זו חוויה.MOV",title:"אפרת סדנה - זו חוויה",yt:"xUqe7egmZe8"},
+ {file:"וידאו/בל יהלומים - בסט פרנס.mp4",title:"בל יהלומים - בסט פרנס",yt:"DL_bSDQir7Y"},
+ {file:"וידאו/בל יהלומים - טבעת כחולה.mp4",title:"בל יהלומים - טבעת כחולה",yt:"ohz6w-RwrUU"},
+ {file:"וידאו/דסי שאלות תשובות.mov",title:"דסי שאלות תשובות",yt:"wOSyH1j-gbI"},
+ {file:"וידאו/הפסד במלחמה עם לילי.mov",title:"הפסד במלחמה עם לילי",yt:"EOeBqKGtP50"},
+ {file:"וידאו/הרבנית שרית.mov",title:"הרבנית שרית",yt:"VLfajFbPvnE"},
+ {file:"וידאו/הרצאה כאן 11.mov",title:"הרצאה כאן 11",yt:"RZPWOkTUuXc"},
+ {file:"וידאו/חנה תסרוקת ערב.MOV",title:"חנה תסרוקת ערב",yt:"PaPBmU-0gAk"},
  {file:"וידאו/כנס קידום.mov",title:"כנס קידום"},
  {file:"וידאו/מקס.mp4",title:"מקס"},
  {file:"וידאו/פותחים שנה בארביטראז.mov",title:"פותחים שנה בארביטראז"},
@@ -922,11 +942,11 @@ buildReelCarousel(TRENDS_ITEMS, document.getElementById('trendsScreen'), documen
 
 /* BEHIND THE MARKETING - all videos from the מאחורי השיווק/ folder */
 var BTS_VIDEOS=[
- {file:"מאחורי השיווק/818.mp4",title:"818"},
- {file:"מאחורי השיווק/גייסו.mov",title:"גייסו"},
- {file:"מאחורי השיווק/מאיה קיי.mp4",title:"מאיה קיי"},
- {file:"מאחורי השיווק/מיו מיו.mov",title:"מיו מיו"},
- {file:"מאחורי השיווק/נטע אלחמיסטר.mp4",title:"נטע אלחמיסטר"},
+ {file:"מאחורי השיווק/818.mp4",title:"818",yt:"fuWJrb_D-T8"},
+ {file:"מאחורי השיווק/גייסו.mov",title:"גייסו",yt:"gnKysBM_c0Q"},
+ {file:"מאחורי השיווק/מאיה קיי.mp4",title:"מאיה קיי",yt:"wE5cNkYuTpg"},
+ {file:"מאחורי השיווק/מיו מיו.mov",title:"מיו מיו",yt:"b_F-b_4v6iY"},
+ {file:"מאחורי השיווק/נטע אלחמיסטר.mp4",title:"נטע אלחמיסטר",yt:"dpJwXGMRV08"},
  {file:"מאחורי השיווק/קואצלה רוד.mp4",title:"קואצלה רוד"},
  {file:"מאחורי השיווק/ראשון.mov",title:"ראשון"},
  {file:"מאחורי השיווק/רוד וגאפ.mov",title:"רוד וגאפ"}
@@ -943,7 +963,21 @@ document.addEventListener('click',function(e){
   r.classList.add('is-playing');
   var v=r.querySelector('video');
   document.querySelectorAll('.reel video').forEach(function(other){ if(other!==v && !other.paused) other.pause(); });
+  document.querySelectorAll('.reel[data-yt].is-playing').forEach(resetYouTubeSlide);
   v.muted=false;v.controls=true;v.play().catch(function(){/* autoplay/decoding can legitimately be refused by the browser - controls stay on so the user can still press play manually */});
+ }
+ var ry=e.target.closest('.reel[data-yt]');
+ if(ry&&!ry.classList.contains('is-playing')){
+  ry.classList.add('is-playing');
+  document.querySelectorAll('.reel video').forEach(function(other){ if(!other.paused) other.pause(); });
+  document.querySelectorAll('.reel[data-yt].is-playing').forEach(function(other){ if(other!==ry) resetYouTubeSlide(other); });
+  var poster=ry.querySelector('.poster-vid');
+  if(poster) poster.remove();
+  var iframe=document.createElement('iframe');
+  iframe.src='https://www.youtube.com/embed/'+ry.dataset.yt+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+  iframe.setAttribute('allow','autoplay; encrypted-media');
+  iframe.setAttribute('allowfullscreen','');
+  ry.insertBefore(iframe, ry.firstChild);
  }
 });
 
