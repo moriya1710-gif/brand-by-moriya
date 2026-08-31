@@ -928,7 +928,7 @@ var VIDEO_ITEMS=[
  {file:"וידאו/פספוסים.mov",title:"פספוסים",yt:"PcQaJM8Q6AU"},
  {file:"וידאו/צילומי פספוסים של לוונדר.MOV",title:"צילומי פספוסים של לוונדר"}
 ];
-buildReelCarousel(VIDEO_ITEMS, document.getElementById('videoScreen'), document.getElementById('videoDots'), document.getElementById('videoCount'), document.getElementById('videoPrev'), document.getElementById('videoNext'));
+buildReelCarousel(VIDEO_ITEMS.filter(function(v){return v.yt;}), document.getElementById('videoScreen'), document.getElementById('videoDots'), document.getElementById('videoCount'), document.getElementById('videoPrev'), document.getElementById('videoNext'));
 
 /* 02 TRENDS & EDITING - every real file in the טרנדים ועריכות/ folder */
 var TRENDS_ITEMS=[
@@ -958,7 +958,7 @@ var TRENDS_ITEMS=[
  {title:"תעשה אותי רזה",yt:"1L5FTS20Rbo"},
  {title:"לא קונה כלום",yt:"GKEuHPvVYIY"}
 ];
-buildReelCarousel(TRENDS_ITEMS, document.getElementById('trendsScreen'), document.getElementById('trendsDots'), document.getElementById('trendsCount'), document.getElementById('trendsPrev'), document.getElementById('trendsNext'));
+buildReelCarousel(TRENDS_ITEMS.filter(function(v){return v.yt;}), document.getElementById('trendsScreen'), document.getElementById('trendsDots'), document.getElementById('trendsCount'), document.getElementById('trendsPrev'), document.getElementById('trendsNext'));
 
 /* BEHIND THE MARKETING - all videos from the מאחורי השיווק/ folder */
 var BTS_VIDEOS=[
@@ -971,7 +971,7 @@ var BTS_VIDEOS=[
  {file:"מאחורי השיווק/ראשון.mov",title:"ראשון"},
  {file:"מאחורי השיווק/רוד וגאפ.mov",title:"רוד וגאפ"}
 ];
-buildReelCarousel(BTS_VIDEOS, document.getElementById('btsScreen'), document.getElementById('btsDots'), document.getElementById('btsCount'), document.getElementById('btsPrev'), document.getElementById('btsNext'));
+buildReelCarousel(BTS_VIDEOS.filter(function(v){return v.yt;}), document.getElementById('btsScreen'), document.getElementById('btsDots'), document.getElementById('btsCount'), document.getElementById('btsPrev'), document.getElementById('btsNext'));
 
 /* phone-mockup reel play: the poster <video> already shows the real opening frame (preload=metadata only);
    a click just turns sound/controls on and plays it - nothing new is fetched until the user asks for it.
