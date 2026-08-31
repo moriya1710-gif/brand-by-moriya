@@ -31,7 +31,7 @@
   --hair-d:rgba(199,154,151,.16); --hair-l:rgba(30,26,27,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--ink);color:var(--greige);font-family:var(--body);font-weight:300;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 ::selection{background:var(--burgundy);color:var(--greige)}
@@ -313,7 +313,7 @@ footer .mono{font-family:var(--display);font-size:1.2rem;color:var(--greige)}
 .trusted{text-align:center}
 .trusted-title{font-family:var(--serif-he);font-weight:900;font-size:clamp(2.7rem,8.6vw,7rem);line-height:.98;color:var(--greige);margin-bottom:clamp(56px,9vw,120px)}
 .trusted-title.subtle{font-weight:500;font-size:clamp(1.05rem,1.8vw,1.4rem);line-height:1.4;white-space:nowrap;color:var(--greige-dim);margin-bottom:clamp(36px,5vw,64px)}
-@media(max-width:380px){.trusted-title.subtle{white-space:normal;font-size:1rem}}
+@media(max-width:480px){.trusted-title.subtle{white-space:normal;font-size:1rem}}
 .logogrid{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(16px,2.4vw,34px);max-width:1100px;margin:0 auto}
 .logocell{width:clamp(150px,22vw,240px);aspect-ratio:3/2;background:rgba(230,224,221,.04);border-radius:6px;display:flex;align-items:center;justify-content:center;padding:22px;transition:background .4s,transform .4s}
 .logocell:hover{background:rgba(230,224,221,.08);transform:translateY(-4px)}
@@ -519,6 +519,15 @@ body{font-weight:400}
 .stat-chip svg{width:15px;height:15px;stroke:var(--rose);fill:none;stroke-width:1.7}
 .stat-chip b{color:var(--cream);font-weight:700;margin-inline-start:2px}
 @media(max-width:900px){.stat-chip{display:none}}
+
+/* MOBILE FIXES (390-430px phones): section height follows content, forced-nowrap headlines wrap instead of overflowing, floating button clears the iOS home-indicator/safe-area */
+@media(max-width:480px){
+.statement:not(.believe){min-height:auto;padding-block:clamp(56px,10vh,90px)}
+.statement h2.line-mission{white-space:normal;font-size:clamp(1.6rem,7vw,2.2rem);line-height:1.3}
+.statement h2.line-philo{white-space:normal;font-size:clamp(1.05rem,4.6vw,1.4rem);line-height:1.45}
+.work .sec-hd h2 .line1{white-space:normal}
+.whatsapp-fab{bottom:calc(16px + env(safe-area-inset-bottom));left:calc(16px + env(safe-area-inset-left))}
+}
 </style>
 </head>
 <body>
@@ -894,29 +903,29 @@ function buildReelCarousel(items, screenEl, dotsEl, countEl, prevBtn, nextBtn){
 
 /* 01 VIDEO - every real file in the current וידאו/ folder */
 var VIDEO_ITEMS=[
+ {file:"וידאו/רימקס 1.mov",title:"רימקס 1"},
+ {file:"וידאו/צילומי סושיאל לרימקס מאחורי הקלעים.mov",title:"צילומי סושיאל לרימקס · מאחורי הקלעים"},
  {file:"וידאו/AI.mov",title:"AI",yt:"ZTAsBA6y5dw"},
- {file:"וידאו/אוהב אותי לא אוהב אותי.MOV",title:"אוהב אותי לא אוהב אותי",yt:"qLhHtOv7ekA"},
- {file:"וידאו/אילוף זה יקר - הארוך.MOV",title:"אילוף זה יקר - גרסה מלאה",yt:"5CiwTHNzAq8"},
- {file:"וידאו/אילוף זה יקר - קצר.MOV",title:"אילוף זה יקר - גרסה קצרה",yt:"pU5_ivpmyww"},
- {file:"וידאו/אפרת 3.MOV",title:"אפרת 3",yt:"xYfwpP_xQQE"},
- {file:"וידאו/אפרת סדנה - זו חוויה.MOV",title:"אפרת סדנה - זו חוויה",yt:"xUqe7egmZe8"},
  {file:"וידאו/בל יהלומים - בסט פרנס.mp4",title:"בל יהלומים - בסט פרנס",yt:"DL_bSDQir7Y"},
  {file:"וידאו/בל יהלומים - טבעת כחולה.mp4",title:"בל יהלומים - טבעת כחולה",yt:"ohz6w-RwrUU"},
+ {file:"וידאו/אפרת 3.MOV",title:"אפרת 3",yt:"xYfwpP_xQQE"},
+ {file:"וידאו/אפרת סדנה - זו חוויה.MOV",title:"אפרת סדנה - זו חוויה",yt:"xUqe7egmZe8"},
+ {file:"וידאו/אילוף זה יקר - הארוך.MOV",title:"אילוף זה יקר - גרסה מלאה",yt:"5CiwTHNzAq8"},
+ {file:"וידאו/אילוף זה יקר - קצר.MOV",title:"אילוף זה יקר - גרסה קצרה",yt:"pU5_ivpmyww"},
  {file:"וידאו/דסי שאלות תשובות.mov",title:"דסי שאלות תשובות",yt:"wOSyH1j-gbI"},
- {file:"וידאו/הפסד במלחמה עם לילי.mov",title:"הפסד במלחמה עם לילי",yt:"EOeBqKGtP50"},
  {file:"וידאו/הרבנית שרית.mov",title:"הרבנית שרית",yt:"VLfajFbPvnE"},
- {file:"וידאו/הרצאה כאן 11.mov",title:"הרצאה כאן 11",yt:"RZPWOkTUuXc"},
  {file:"וידאו/חנה תסרוקת ערב.MOV",title:"חנה תסרוקת ערב",yt:"PaPBmU-0gAk"},
- {file:"וידאו/כנס קידום.mov",title:"כנס קידום"},
- {file:"וידאו/מקס.mp4",title:"מקס"},
- {file:"וידאו/פותחים שנה בארביטראז.mov",title:"פותחים שנה בארביטראז"},
- {file:"וידאו/פנסיוני.mp4",title:"פנסיוני"},
+ {file:"וידאו/הרצאה כאן 11.mov",title:"הרצאה כאן 11",yt:"RZPWOkTUuXc"},
+ {file:"וידאו/אוהב אותי לא אוהב אותי.MOV",title:"אוהב אותי לא אוהב אותי",yt:"qLhHtOv7ekA"},
+ {file:"וידאו/הפסד במלחמה עם לילי.mov",title:"הפסד במלחמה עם לילי",yt:"EOeBqKGtP50"},
  {file:"וידאו/פסיכולוגית.MOV",title:"פסיכולוגית"},
- {file:"וידאו/פספוסים.mov",title:"פספוסים"},
- {file:"וידאו/צילומי סושיאל לרימקס מאחורי הקלעים.mov",title:"צילומי סושיאל לרימקס · מאחורי הקלעים"},
- {file:"וידאו/צילומי פספוסים של לוונדר.MOV",title:"צילומי פספוסים של לוונדר"},
+ {file:"וידאו/פנסיוני.mp4",title:"פנסיוני"},
+ {file:"וידאו/מקס.mp4",title:"מקס"},
+ {file:"וידאו/כנס קידום.mov",title:"כנס קידום"},
+ {file:"וידאו/פותחים שנה בארביטראז.mov",title:"פותחים שנה בארביטראז"},
  {file:"וידאו/קרביץ.mov",title:"קרביץ"},
- {file:"וידאו/רימקס 1.mov",title:"רימקס 1"}
+ {file:"וידאו/פספוסים.mov",title:"פספוסים"},
+ {file:"וידאו/צילומי פספוסים של לוונדר.MOV",title:"צילומי פספוסים של לוונדר"}
 ];
 buildReelCarousel(VIDEO_ITEMS, document.getElementById('videoScreen'), document.getElementById('videoDots'), document.getElementById('videoCount'), document.getElementById('videoPrev'), document.getElementById('videoNext'));
 
@@ -936,7 +945,17 @@ var TRENDS_ITEMS=[
  {file:"טרנדים ועריכות/עריכות.mov",title:"עריכות"},
  {file:"טרנדים ועריכות/שאלות סושיאל.MOV",title:"שאלות סושיאל"},
  {file:"טרנדים ועריכות/שכחתי לצלם.mov",title:"שכחתי לצלם"},
- {file:"טרנדים ועריכות/תעשי אותי רזה.MOV",title:"תעשי אותי רזה"}
+ {file:"טרנדים ועריכות/תעשי אותי רזה.MOV",title:"תעשי אותי רזה"},
+ {title:"איזה משקה אני?",yt:"-Le6GtiN0UU"},
+ {title:"איפה נלך?",yt:"pIrVjCLN55s"},
+ {title:"איתי או בלעדיי",yt:"_DqXEfLfArs"},
+ {title:"ריל GRWM",yt:"8MYLRPg8NKY"},
+ {title:"אני עסוקה",yt:"Is7E5I5bgkg"},
+ {title:"רק כלב",yt:"Njr52oYSvVM"},
+ {title:"טרנד באד באני",yt:"GA33uoOXGpE"},
+ {title:"הארנק שלי",yt:"5UqKuqpSl3A"},
+ {title:"תעשה אותי רזה",yt:"1L5FTS20Rbo"},
+ {title:"לא קונה כלום",yt:"GKEuHPvVYIY"}
 ];
 buildReelCarousel(TRENDS_ITEMS, document.getElementById('trendsScreen'), document.getElementById('trendsDots'), document.getElementById('trendsCount'), document.getElementById('trendsPrev'), document.getElementById('trendsNext'));
 
