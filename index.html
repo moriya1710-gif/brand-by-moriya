@@ -1003,58 +1003,56 @@ html.win-open{overflow:hidden}
   .bl-body,.bl-win,.bl-tools span{transition:none}
 }
 
-/* ==== HERO · gradient + floating real videos / emojis / elements, a typing search bar in the middle and a big iPhone at its side (design-lab) ==== */
-.cover.hz{--u:min(calc(100vw/90),16px);--hz-burg:#6A1E2D;--hz-rose:#C9A7AA;--hz-pearl:#F3ECE4;--hz-champ:#C8A97E;
-  min-height:max(100vh,46em);padding:clamp(96px,9vw,128px) clamp(14px,3vw,40px) clamp(40px,5vw,64px);display:flex;align-items:center;justify-content:center;overflow:hidden;
-  background:radial-gradient(90% 80% at 88% 0%,rgba(106,30,45,.62),transparent 58%),radial-gradient(70% 60% at 6% 100%,rgba(201,167,170,.16),transparent 62%),radial-gradient(50% 45% at 50% 55%,rgba(106,30,45,.2),transparent 70%),var(--ink)}
-.cover.hz>.hz-float{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.hz-grid{position:relative;z-index:3;width:min(46em,100%);font-size:var(--u);display:block;direction:ltr}
-.cover.hz .hz-grid>*{position:relative;z-index:auto}
+/* ==== HERO · Premium Editorial: a cream base with soft blurred burgundy / rose light, film grain, a 3D "digital space" of real reels, big BRAND BY MORIYA type (design-lab) ==== */
+.cover.hz{--u:min(calc(100vw/90),16px);--hz-burg:#6A1E2D;--hz-rose:#C9A7AA;--hz-cream:#E6E0DD;--hz-char:#2B2B2B;
+  min-height:max(100vh,48em);padding:clamp(96px,9vw,128px) clamp(14px,3vw,40px) clamp(40px,5vw,64px);display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:var(--hz-cream);color:var(--hz-char)}
 
-/* main column: search bar + who I am */
-.hz-main{direction:rtl;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1em}
-.hz-search{position:relative;display:flex;align-items:center;gap:.8em;margin-inline:auto;width:min(100%,32em);height:5em;padding:0 1em 0 1.6em;border-radius:4em;overflow:hidden;direction:ltr;color:var(--hz-pearl);
-  background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.07)),rgba(26,17,20,.42);
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.34);
-  box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(255,255,255,.1)}
-.hz-search::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(120% 150% at 10% -30%,rgba(255,255,255,.4),transparent 55%);pointer-events:none}
-.hz-search svg{width:1.8em;height:1.8em;flex:none;opacity:.85;position:relative}
-.hz-q{position:relative;flex:1;min-width:0;font-family:var(--body-en);font-weight:500;font-size:2.05em;letter-spacing:.02em;white-space:nowrap;line-height:1;display:flex;align-items:center;text-shadow:0 1px 8px rgba(0,0,0,.25)}
-.hz-q::after{content:"";width:.07em;height:1.05em;background:var(--hz-pearl);margin-inline-start:.08em;animation:hzCaret 1s steps(1) infinite}
-@keyframes hzCaret{50%{opacity:0}}
-.hz-x{position:relative;flex:none;width:2.8em;height:2.8em;border-radius:50%;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.5);display:grid;place-items:center}
-.hz-x svg{width:1.2em;height:1.2em;opacity:.95}
-.hz-kick{margin-top:clamp(22px,3.2vw,38px);display:inline-flex;align-items:center;gap:.5em;font-family:var(--body-en);font-size:.78rem;letter-spacing:.14em;color:var(--hz-rose)}
-.hz-kick svg{width:1.15em;height:1.15em;fill:#6fb3f5;flex:none}
-.hz-main h1{margin-top:12px;font-family:var(--serif-he);font-weight:900;font-size:clamp(2.4rem,5.2vw,4.4rem);line-height:1.02;letter-spacing:-.01em;color:var(--greige)}
-.hz-slogan{margin-top:12px;font-family:var(--serif-he);font-weight:600;font-size:clamp(1rem,1.7vw,1.3rem);color:var(--hz-rose)}
-.hz-bio{margin-top:14px;max-width:34em;font-family:var(--body);font-weight:400;font-size:clamp(.98rem,1.3vw,1.08rem);line-height:1.75;color:var(--greige-dim)}
-.hz-main .ig-actions{margin-top:clamp(20px,2.6vw,30px);justify-content:center}
-.hz-main .ig-social{margin-top:clamp(16px,2vw,24px);justify-content:center}
-
-/* floating actors: each one is created at a random spot, travels its own path while GSAP grows it from small to large, keeps going and fades out; a new one takes its place */
-.cover.hz>.hz-veil{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(40% 38% at 50% 52%,rgba(19,16,17,.82),rgba(19,16,17,.4) 58%,transparent 80%)}
-.hz-p.vd,.hz-p.vd *{pointer-events:none!important}
-.hz-float{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-.hz-p{position:absolute;left:0;top:0;font-size:var(--u);pointer-events:auto;will-change:transform,opacity;opacity:0}
+/* ---- the 3D space the reels travel through ---- */
+.cover.hz>.hz-float{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;perspective:1100px;perspective-origin:50% 50%}
+.hz-scene{position:absolute;inset:0;transform-style:preserve-3d}
+.hz-p{position:absolute;left:50%;top:50%;font-size:var(--u);pointer-events:none!important;will-change:transform,opacity;opacity:0;-webkit-user-select:none;user-select:none}
+.hz-p *{pointer-events:none!important}
 .hz-fr{animation:hzR var(--dr,11s) ease-in-out var(--or,0s) infinite alternate}
 @keyframes hzR{from{rotate:calc(var(--ar,2deg)*-1)}to{rotate:var(--ar,2deg)}}
-.hz-hv{transition:scale .5s cubic-bezier(.2,.85,.2,1),filter .5s ease;}
-.hz-p:hover .hz-hv{scale:1.08}
-.hz-p img.el{display:block;width:var(--w);height:auto;filter:drop-shadow(0 .5em .7em rgba(0,0,0,.4))}
-.hz-p video,.hz-p .hz-ph{display:block;width:var(--vw,9em);height:calc(var(--vw,9em)*1.7778);object-fit:cover;border-radius:1.3em;border:.16em solid rgba(255,255,255,.7);background:#1a1114;box-shadow:0 1.3em 2.2em -.6em rgba(0,0,0,.65)}
-.hz-vb{position:relative}
-.hz-tg{position:absolute;left:0;right:0;bottom:0;padding:2.4em .9em .8em;border-radius:0 0 1.3em 1.3em;font-family:var(--body-en);font-size:.66em;font-weight:500;letter-spacing:.14em;color:#fff;text-transform:uppercase;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));pointer-events:none;direction:ltr;text-align:left;opacity:0;transition:opacity .4s ease}
-.hz-p:hover .hz-tg{opacity:1}
+.hz-p img.el{display:block;width:var(--w);height:auto;filter:drop-shadow(0 .6em .8em rgba(43,43,43,.3))}
+.hz-p video,.hz-p .hz-ph{display:block;width:var(--vw,9em);height:calc(var(--vw,9em)*1.7778);object-fit:cover;border-radius:1.3em;border:.16em solid rgba(255,255,255,.88);background:#cfc6c2;box-shadow:0 1.4em 2.6em -1em rgba(43,43,43,.5)}
 .hz.paused .hz-fr{animation-play-state:paused}
+
+/* ---- the content: BRAND BY MORIYA is the focal point ---- */
+.hz-grid{position:relative;z-index:3;width:min(74em,100%);font-size:var(--u);display:block;direction:ltr}
+.hz-main{direction:rtl;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1em}
+.hz-search{position:relative;display:flex;align-items:center;gap:.8em;margin-inline:auto;width:min(100%,30em);height:4.8em;padding:0 1em 0 1.5em;border-radius:4em;overflow:hidden;direction:ltr;color:var(--hz-char);
+  background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 18px 38px -22px rgba(43,43,43,.5),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(106,30,45,.1)}
+.hz-search svg{width:1.7em;height:1.7em;flex:none;opacity:.7;position:relative;color:var(--hz-burg)}
+.hz-q{position:relative;flex:1;min-width:0;font-family:var(--body-en);font-weight:500;font-size:2em;letter-spacing:.02em;white-space:nowrap;line-height:1;display:flex;align-items:center}
+.hz-q::after{content:"";width:.07em;height:1.05em;background:var(--hz-burg);margin-inline-start:.08em;animation:hzCaret 1s steps(1) infinite}
+@keyframes hzCaret{50%{opacity:0}}
+.hz-x{position:relative;flex:none;width:2.7em;height:2.7em;border-radius:50%;background:rgba(43,43,43,.07);border:1px solid rgba(43,43,43,.1);display:grid;place-items:center;color:var(--hz-char)}
+.hz-x svg{width:1.15em;height:1.15em;opacity:.8;color:inherit}
+.hz-main h1{margin:clamp(20px,2.6vw,34px) 0 0;line-height:.95;font-weight:400}
+.hz-main h1 .en{display:block;font-family:var(--display);font-size:clamp(2.1rem,7.1vw,7rem);letter-spacing:-.025em;text-transform:uppercase;color:var(--hz-char);direction:ltr;text-wrap:balance}
+.hz-main h1 .en em{font-family:var(--serif-en);font-style:italic;font-weight:400;text-transform:lowercase;letter-spacing:0;color:var(--hz-burg);font-size:.8em;margin-inline:.06em}
+.hz-main h1 .he{display:block;text-align:right;margin-top:clamp(10px,1.4vw,18px);font-family:var(--serif-he);font-weight:800;font-size:clamp(1.25rem,2.2vw,1.9rem);letter-spacing:-.01em;color:var(--hz-burg)}
+.hz-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 0;margin-top:clamp(14px,1.8vw,22px);font-family:var(--body);font-weight:500;font-size:1rem;letter-spacing:0;color:#3b3335;direction:rtl}
+.hz-caps span{display:inline-flex;align-items:center;gap:.7em;padding:0 1.5rem}
+.hz-caps span+span{border-inline-start:1px solid rgba(43,43,43,.22)}
+.hz-caps span::before{content:"";flex:none;width:1.2em;height:1.2em}
+.hz-slogan{margin-top:12px;font-family:var(--serif-he);font-weight:600;font-size:clamp(1rem,1.6vw,1.2rem);color:var(--hz-char)}
+.hz-bio{margin-top:10px;max-width:34em;font-family:var(--body);font-weight:400;font-size:clamp(.98rem,1.25vw,1.05rem);line-height:1.75;color:#4a4042}
+.hz-main .ig-actions{margin-top:clamp(18px,2.2vw,28px);justify-content:center}
+.hz-main .ig-social{margin-top:clamp(14px,1.8vw,22px);justify-content:center}
+
 @media(max-width:900px){
-  .cover.hz{--u:calc(100vw/28);min-height:max(100svh,40em);padding:104px 16px 56px;display:flex}
+  .cover.hz{--u:calc(100vw/28);min-height:max(100svh,40em);padding:100px 16px 52px;display:flex}
   .hz-grid{width:100%}
   .hz-main{padding:0}
-  .hz-search{width:min(100%,22em);height:4.4em;padding:0 .8em 0 1.2em;gap:.6em}
-  .hz-search svg{width:1.6em;height:1.6em}.hz-q{font-size:1.7em}.hz-x{width:2.4em;height:2.4em}
-  .hz-tg{display:none}
-  .hz-p{pointer-events:none}
+  .hz-search{width:min(100%,21em);height:4.2em;padding:0 .8em 0 1.2em;gap:.6em}
+  .hz-search svg{width:1.5em;height:1.5em}.hz-q{font-size:1.65em}.hz-x{width:2.3em;height:2.3em}
+  .hz-main h1 .en{font-size:clamp(2.1rem,10.4vw,3.4rem)}
+  .hz-caps{display:grid;grid-template-columns:auto auto;justify-content:center;gap:.7rem 1.1rem;font-size:.86rem;letter-spacing:0;max-width:100%}
+  .hz-caps span{padding:0;border:0!important;text-align:start;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){.hz-fr{animation:none!important}.hz-p{opacity:var(--op,1)!important}}
 
@@ -1088,15 +1086,15 @@ html.win-open{overflow:hidden}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -.6em .8em -.5em rgba(201,167,170,.6);transition:transform .35s cubic-bezier(.2,.85,.2,1),border-color .3s,box-shadow .3s}
 .nav-cta:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -.7em 1em -.5em rgba(201,167,170,.85),0 12px 24px -12px rgba(0,0,0,.6)}
 
-/* hero: the two buttons sit in one glass capsule, like the input + button in the reference */
+/* hero (light editorial): the two buttons sit in one light glass capsule, a burgundy pill with a pearl arrow chip as the main action */
 .hz-main .ig-actions{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:6px;padding:6px;border-radius:50px;
-  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.04)),rgba(26,17,20,.42);
-  -webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border:1px solid rgba(255,255,255,.3);
-  box-shadow:0 18px 40px -18px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.4)}
-.hz-main .ig-actions .btn.btn-ghost{background:transparent;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:12px 22px;font-size:.92rem;transform:none}
-.hz-main .ig-actions .btn.btn-ghost:hover{background:rgba(255,255,255,.08);transform:none}
-.hz-main .ig-actions .btn.btn-primary{padding-block:5px;padding-inline:24px 5px;font-size:.94rem}
-.hz-main .ig-actions .btn.btn-primary::after{width:36px;height:36px}
+  background:rgba(255,255,255,.46);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 18px 36px -22px rgba(43,43,43,.5),inset 0 1px 0 #fff}
+.hz-main .ig-actions .btn.btn-ghost{color:#2B2B2B;background:transparent;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:12px 22px;font-size:.92rem;transform:none}
+.hz-main .ig-actions .btn.btn-ghost:hover{background:rgba(106,30,45,.08);color:#6A1E2D;transform:none}
+.hz-main .ig-actions .btn.btn-primary{padding-block:5px;padding-inline:24px 5px;font-size:.94rem;color:#F3ECE4;background:linear-gradient(180deg,#7E2638,#5C1A2E);box-shadow:0 14px 26px -14px rgba(92,26,46,.75),inset 0 1px 0 rgba(255,255,255,.22)}
+.hz-main .ig-actions .btn.btn-primary:hover{background:linear-gradient(180deg,#8A2A3E,#4C1722);transform:translateY(-2px)}
+.hz-main .ig-actions .btn.btn-primary::after{width:36px;height:36px;background:#F3ECE4 var(--bt-arrow-b) center/17px no-repeat}
 
 /* buttons on light backgrounds (About, Services window): dark burgundy pill + pearl arrow chip */
 .about .mini-cta,.win-cta{gap:16px;padding-block:6px;padding-inline:26px 6px;font-weight:600;color:#F3ECE4;border:0;
@@ -1117,8 +1115,24 @@ html.win-open{overflow:hidden}
   .hz-main .ig-actions .btn.btn-primary{padding-inline:18px 5px;font-size:.88rem;gap:12px}
 }
 @media(prefers-reduced-motion:reduce){.btn,.btn::after,.nav-cta,.mini-cta,.mini-cta::after,.win-cta,.win-cta::after,.pnav{transition:none!important}}
+
+/* ==== HERO · subtle glass (chosen): glass search, glass service chips with their own emoji, glass frames on the reels ==== */
+.hz .hz-search{background:rgba(255,255,255,.64);border:1px solid rgba(255,255,255,.95)}
+.hz .hz-caps{gap:.6rem}
+.hz .hz-caps span{padding:.55em 1.1em;border-radius:40px;background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 22px -14px rgba(43,43,43,.45),inset 0 1px 0 #fff}
+.hz .hz-caps span+span{border-inline-start:1px solid rgba(255,255,255,.92)}
+.hz .hz-p video,.hz .hz-p .hz-ph{border:.22em solid rgba(255,255,255,.6);box-shadow:0 1.6em 2.8em -1em rgba(43,43,43,.5),0 0 0 .12em rgba(255,255,255,.35)}
+/* one fitting emoji per service */
+.hz .hz-caps span::before{width:1.3em;height:1.3em;background-repeat:no-repeat;background-position:center;background-size:contain}
+.hz .hz-caps span:nth-child(1)::before{background-image:url("אלמנטים/cut/emo-bubble.png")}
+.hz .hz-caps span:nth-child(2)::before{background-image:url("אלמנטים/cut/emo-camera.png")}
+.hz .hz-caps span:nth-child(3)::before{background-image:url("אלמנטים/cut/emo-write.png")}
+.hz .hz-caps span:nth-child(4)::before{background-image:url("אלמנטים/cut/emo-handshake.png")}
+@media(max-width:900px){.hz .hz-caps span{padding:.45em .85em;border:1px solid rgba(255,255,255,.92)!important}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Gveret+Levin&display=swap" rel="stylesheet">
+<link rel="preload" href="hero/gsap.min.js" as="script">
+<link rel="preload" href="hero/ScrollTrigger.min.js" as="script">
 </head>
 <body>
 <div class="bg-flow" aria-hidden="true"></div>
@@ -1135,15 +1149,12 @@ html.win-open{overflow:hidden}
 
 <!-- HERO -->
 <header class="cover ig-hero hz" id="hz">
-  <div class="hz-float" aria-hidden="true"></div>
-  <div class="hz-veil" aria-hidden="true"></div>
+  <div class="hz-float" aria-hidden="true"><div class="hz-scene"></div></div>
   <div class="hz-grid">
     <div class="hz-main">
       <div class="hz-search" role="img" aria-label="Social &amp; content"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="hz-q"><b class="tx"></b></span><span class="hz-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></div>
-      <div class="hz-kick lt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 1.8 3-.2 1 2.8 2.6 1.6-1 2.8 1 2.8-2.6 1.6-1 2.8-3-.2L12 22l-2.4-1.8-3 .2-1-2.8L3 16.2l1-2.8-1-2.8 2.6-1.6 1-2.8 3 .2z"/><path d="M10.6 14.6l-2-2-1.1 1.1 3.1 3.1 5.3-5.3-1.1-1.1z" fill="#0f0c0d"/></svg>brand by moriya</div>
-      <h1>מוריה מימון</h1>
-      <div class="hz-slogan">משווקת ואסטרטגית סושיאל | צילום ותוכן לעסקים</div>
-      <p class="hz-bio">אני בונה לעסקים אסטרטגיית סושיאל, זהות ושפה דיגיטלית שמחברות בין המותג, הקהל למטרות העסקיות.</p>
+      <h1><span class="en">Brand <em>by</em> Moriya</span><span class="he">מוריה מימון</span></h1>
+      <div class="hz-caps" aria-label="השירותים"><span data-n="01">ניהול סושיאל מדיה</span><span data-n="02">ימי צילום ויצירת תוכן</span><span data-n="03">אסטרטגיית סושיאל</span><span data-n="04">ליווי וייעוץ</span></div>
       <div class="ig-actions">
         <a class="btn btn-primary" href="https://wa.me/972509201625?text=%D7%94%D7%99%D7%99%20%D7%9E%D7%95%D7%A8%D7%99%D7%94%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%9D%20%D7%A9%D7%9C%D7%9A." target="_blank" rel="noopener" data-cursor>בואו נדבר</a>
         <a class="btn btn-ghost" href="#work" data-cursor>לצפייה בעבודות ↓</a>
@@ -1984,111 +1995,100 @@ if(waFab&&waFooter){
   });},{threshold:[0,.25]}).observe(st);
 })();
 
-/* HERO · an endless stream of reels (videos only). Every element is born small at a random spot, travels its own path (horizontal / vertical / diagonal) while growing to a big, prominent size,
-   keeps moving, fades out beyond its peak and is replaced by a new one. GSAP timelines, staggered starts, random position / speed / size / direction, overlap control (design-lab).
-   The centre column (search bar, name, buttons) is never crossed at full size: elements are born around it and travel outward / along the edges, under a soft dark veil. */
+/* HERO · a living digital space of real reels. A 3D scene (CSS perspective): every reel is born far away and tiny, flies toward the viewer growing and turning slightly, passes the frame and fades; a new one takes its place.
+   Two kinds of flights: "fly" (fast, foreground, from around the text outward) and "drift" (slow, background, across the screen edges). GSAP timelines + ScrollTrigger (scroll scrub), random start / path / speed / size / angle,
+   staggered starts, overlap control, protected text area. Libraries load after the page is ready; everything pauses when the hero is off screen (design-lab). */
 (function(){
   var hz=document.getElementById('hz'); if(!hz) return;
-  var layer=hz.querySelector('.hz-float'), tx=hz.querySelector('.hz-q b'), grid=hz.querySelector('.hz-grid');
-  var VIDS=[["hero/f/f00.mp4","Trends","hero/f/th00.webp"],["hero/f/f01.mp4","Behind the scenes","hero/f/th01.webp"],["hero/f/f02.mp4","Reels","hero/f/th02.webp"],["hero/f/f03.mp4","Reels","hero/f/th03.webp"],["hero/f/f04.mp4","Behind the scenes","hero/f/th04.webp"],["hero/f/f05.mp4","Reels","hero/f/th05.webp"],["hero/f/f06.mp4","Reels","hero/f/th06.webp"],["hero/f/f07.mp4","Reels","hero/f/th07.webp"],["hero/f/f08.mp4","Trends","hero/f/th08.webp"],["hero/f/f09.mp4","Reels",""],["hero/f/f10.mp4","Reels",""],["hero/f/f11.mp4","Trends",""],["hero/f/f12.mp4","Reels",""],["hero/f/f13.mp4","Reels",""]];
-  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches, mob=matchMedia('(max-width:900px)'), fine=matchMedia('(hover:hover) and (pointer:fine)');
+  var scene=hz.querySelector('.hz-scene'), float=hz.querySelector('.hz-float'), tx=hz.querySelector('.hz-q b'), main=hz.querySelector('.hz-main');
+  var VIDS=[["hero/f/f00.mp4","Trends","hero/f/th00.webp"],["hero/f/f01.mp4","Behind the scenes","hero/f/th01.webp"],["hero/f/f02.mp4","Reels","hero/f/th02.webp"],["hero/f/f03.mp4","Reels","hero/f/th03.webp"],["hero/f/f04.mp4","Behind the scenes","hero/f/th04.webp"],["hero/f/f05.mp4","Reels","hero/f/th05.webp"],["hero/f/f06.mp4","Reels","hero/f/th06.webp"],["hero/f/f07.mp4","Reels","hero/f/th07.webp"],["hero/f/f08.mp4","Trends","hero/f/th08.webp"],["hero/f/f09.mp4","Reels","hero/f/th09.webp"],["hero/f/f10.mp4","Reels","hero/f/th10.webp"],["hero/f/f11.mp4","Trends","hero/f/th11.webp"],["hero/f/f12.mp4","Reels","hero/f/th12.webp"],["hero/f/f13.mp4","Reels","hero/f/th13.webp"],["hero/f/f14.mp4","Trends","hero/f/th14.webp"],["hero/f/f15.mp4","Reels","hero/f/th15.webp"],["hero/f/f16.mp4","Trends","hero/f/th16.webp"],["hero/f/f17.mp4","Trends","hero/f/th17.webp"]];
+  var rm=matchMedia('(prefers-reduced-motion:reduce)').matches, mob=matchMedia('(max-width:900px)');
   var saveData=navigator.connection&&navigator.connection.saveData;
-  var WORD='Social & content';
-  var N_D=6, N_M=3, MAXV_D=6, MAXV_M=3;   // reels only
+  var WORD='Social & content', PERSP=1100;
+  var N_D=7, N_M=3, MAXV_D=7, MAXV_M=3;     // reels only: no stickers / emojis floating
 
   function rnd(a,b){return a+Math.random()*(b-a);}
   function pickOne(a){return a[(Math.random()*a.length)|0];}
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 
-  /* ---- geometry of the hero and the protected centre column ---- */
-  var W=1,H=1,R={l:0,r:0,t:0,b:0},U=14;
+  /* ---- geometry: hero size + the protected rows of text (every row of the content column) ---- */
+  var W=1,H=1,U=14,RECTS=[];
   function measure(){
-    var h=hz.getBoundingClientRect(), g=grid.getBoundingClientRect();
-    W=hz.clientWidth; H=hz.clientHeight; U=parseFloat(getComputedStyle(hz).getPropertyValue('--u'))||14;
-    var pad=mob.matches?10:28;
-    R={l:g.left-h.left-pad,r:g.right-h.left+pad,t:g.top-h.top-pad,b:g.bottom-h.top+pad};
+    var h=hz.getBoundingClientRect(); W=hz.clientWidth; H=hz.clientHeight; U=parseFloat(getComputedStyle(hz).getPropertyValue('--u'))||14;
+    var pad=mob.matches?8:22; RECTS=[];
+    [].slice.call(main.children).forEach(function(c){ var r=c.getBoundingClientRect(); if(r.width<2) return; RECTS.push({l:r.left-h.left-pad,r:r.right-h.left+pad,t:r.top-h.top-pad,b:r.bottom-h.top+pad}); });
   }
-  function inRect(x,y,k){k=k||0;return x>R.l-k&&x<R.r+k&&y>R.t-k&&y<R.b+k;}
+  function inRects(x,y,k){k=k||0;for(var i=0;i<RECTS.length;i++){var R=RECTS[i];if(x>R.l-k&&x<R.r+k&&y>R.t-k&&y<R.b+k)return true;}return false;}
+  function s2z(s){return PERSP*(1-1/s);}                            // scale <-> depth: s = PERSP / (PERSP - z)
+  function world(sx,sy,s){return {x:(sx-W/2)/s,y:(sy-H/2)/s,z:s2z(s)};}
+  function screenAt(a,b,u){var x=a.x+(b.x-a.x)*u,y=a.y+(b.y-a.y)*u,z=a.z+(b.z-a.z)*u,s=PERSP/(PERSP-z);return {x:W/2+x*s,y:H/2+y*s,s:s};}
 
-  /* ---- a flight plan: start (small), peak (largest) at ~60% of the way, end (faded out) ---- */
+  /* ---- a flight plan in screen space; converted to 3D end points ---- */
   var actors=[];
-  function exitDist(x,y,dx,dy){ // distance along the direction until the point leaves the hero box (+ a margin)
-    var m=Math.max(W,H)*.06, t=1e9;
-    if(dx>0) t=Math.min(t,(W+m-x)/dx); else if(dx<0) t=Math.min(t,(-m-x)/dx);
-    if(dy>0) t=Math.min(t,(H+m-y)/dy); else if(dy<0) t=Math.min(t,(-m-y)/dy);
-    return Math.max(0,t);
-  }
-  function plan(){
-    var cx=W/2, cy=H/2, best=null, mobile=mob.matches, big=Math.max(W,H);
-    for(var tr=0;tr<16;tr++){
-      var sx,sy,ang,mode=Math.random()<.6?'radial':'skim';
-      if(mode==='radial'){
-        var th=rnd(0,Math.PI*2), dx=Math.cos(th), dy=Math.sin(th);
-        var t=0; while(t<big && inRect(cx+dx*t,cy+dy*t,0)) t+=6;   // start just outside the protected column, on the ray from the centre
-        t+=rnd(8,70); sx=cx+dx*t; sy=cy+dy*t;
-        ang=th+rnd(-.65,.65);
-        if(Math.random()<.4) ang=Math.round(ang/(Math.PI/2))*(Math.PI/2)+rnd(-.12,.12);   // some clean horizontal / vertical runs
+  function exitDist(x,y,dx,dy,m){var t=1e9;if(dx>0)t=Math.min(t,(W+m-x)/dx);else if(dx<0)t=Math.min(t,(-m-x)/dx);if(dy>0)t=Math.min(t,(H+m-y)/dy);else if(dy<0)t=Math.min(t,(-m-y)/dy);return Math.max(0,t);}
+  function plan(kind,quick){
+    var mobile=mob.matches, big=Math.max(W,H), best=null;
+    for(var tr=0;tr<18;tr++){
+      var sx,sy,ex,ey,s0,s2,T,cap,ease;
+      if(kind==='fly'){
+        var th=rnd(0,Math.PI*2), dx=Math.cos(th), dy=Math.sin(th), t=0;
+        while(t<big&&inRects(W/2+dx*t,H/2+dy*t,0)) t+=6;
+        t+=rnd(6,60); sx=W/2+dx*t; sy=H/2+dy*t;
+        var ang=th+rnd(-.6,.6); if(Math.random()<.35) ang=Math.round(ang/(Math.PI/2))*(Math.PI/2)+rnd(-.14,.14);
+        var ux=Math.cos(ang), uy=Math.sin(ang), L=exitDist(sx,sy,ux,uy,big*.16);
+        if(L<big*.2) continue;
+        ex=sx+ux*L; ey=sy+uy*L; s0=quick?rnd(.4,.55):rnd(.14,.24); s2=mobile?rnd(1.25,1.65):rnd(1.55,2.05); T=mobile?rnd(6,9):rnd(7,11.5); cap=rnd(.85,1); ease='power1.in';
       } else {
-        var side=pickOne(mobile?['top','bottom']:['left','right','top','bottom']);
-        if(side==='left'){ sx=rnd(.04,.22)*W; sy=rnd(.12,.9)*H; ang=(Math.random()<.5?-1:1)*Math.PI/2+rnd(-.3,.3); }
-        else if(side==='right'){ sx=rnd(.78,.96)*W; sy=rnd(.12,.9)*H; ang=(Math.random()<.5?-1:1)*Math.PI/2+rnd(-.3,.3); }
-        else if(side==='top'){ sx=rnd(.06,.94)*W; sy=rnd(.1,.2)*H; ang=(Math.random()<.5?0:Math.PI)+rnd(-.3,.3); }
-        else { sx=rnd(.06,.94)*W; sy=rnd(.82,.94)*H; ang=(Math.random()<.5?0:Math.PI)+rnd(-.3,.3); }
+        var side=pickOne(mobile?['top','bottom']:['left','right','top','bottom']), m=big*.12, rev=Math.random()<.5;
+        if(side==='left'||side==='right'){ var x=(side==='left'?rnd(.03,.11):rnd(.89,.97))*W; sx=x+rnd(-8,8); ex=x+rnd(-14,14); sy=rev?-m:H+m; ey=rev?H+m:-m; }
+        else { var y=(side==='top'?rnd(.085,.15):rnd(.86,.95))*H; sy=y+rnd(-8,8); ey=y+rnd(-18,18); sx=rev?-m:W+m; ex=rev?W+m:-m; }
+        s0=rnd(.3,.42); s2=rnd(.5,.72); T=mobile?rnd(15,24):rnd(20,32); cap=rnd(.55,.78); ease='sine.inOut';
       }
-      var ux=Math.cos(ang), uy=Math.sin(ang);
-      var len=Math.min(exitDist(sx,sy,ux,uy), big*(mobile?.55:.6));
-      if(len<big*.18) continue;
-      var px=sx+ux*len*.6, py=sy+uy*len*.6, ex=sx+ux*len, ey=sy+uy*len;
-      var cand={sx:sx,sy:sy,ex:ex,ey:ey,px:px,py:py,len:len};
-      // the peak must sit in the frame, outside the protected column, and not on top of another actor's peak
-      var ok=px>W*.02&&px<W*.98&&py>H*.1&&py<H*.97&&!inRect(px,py,18)&&!inRect(sx,sy,0);
-      var minD=(mobile?9:14)*U;
-      for(var i=0;ok&&i<actors.length;i++){ var o=actors[i]; if(Math.hypot(o.px-px,o.py-py)<minD) ok=false; }
-      if(ok) return cand;
-      best=cand;
+      var A=world(sx,sy,s0), B=world(ex,ey,s2), ok=true, mid=screenAt(A,B,.6);
+      // never over the text: sample the whole path (skip the first 10%: tiny + transparent)
+      for(var u=.1;ok&&u<=1;u+=.1){ var q=screenAt(A,B,u); if(q.s<1.1 || kind==='drift') { if(inRects(q.x,q.y,0)) ok=false; } else if(u>.5 && inRects(q.x,q.y,-10)) ok=false; }
+      var minD=(mobile?8:11)*U;
+      for(var i=0;ok&&i<actors.length;i++){ var o=actors[i]; if(Math.hypot(o.mx-mid.x,o.my-mid.y)<minD) ok=false; }
+      var c={A:A,B:B,T:T,cap:cap,ease:ease,mx:mid.x,my:mid.y,kind:kind,s0:s0,s2:s2};
+      if(ok) return c; best=c;
     }
     return best;
   }
 
-  /* ---- build the visual (a reel, or an emoji / sticker / icon) ---- */
-  var lastV=-1,lastE=-1;
-  function content(vidAllowed){
+  /* ---- visual: a reel or a (niche) sticker ---- */
+  var lastV=-1;
+  function content(kind){
     var mobile=mob.matches, f=document.createElement('div'); f.className='hz-fr';
-    f.style.setProperty('--ar',rnd(1.5,4).toFixed(1)+'deg'); f.style.setProperty('--dr',rnd(8,15).toFixed(1)+'s'); f.style.setProperty('--or',(-rnd(0,14)).toFixed(1)+'s');
-    var hv=document.createElement('div'); hv.className='hz-hv'; var isVid=false, vEl=null;
-    if(vidAllowed&&VIDS.length){
+    f.style.setProperty('--ar',rnd(1,3.2).toFixed(1)+'deg'); f.style.setProperty('--dr',rnd(8,15).toFixed(1)+'s'); f.style.setProperty('--or',(-rnd(0,14)).toFixed(1)+'s');
+    var isVid=false, vEl=null;
+    {
       var k; do{k=(Math.random()*VIDS.length)|0;}while(k===lastV&&VIDS.length>1); lastV=k; var vd=VIDS[k];
-      var w=pickOne(mobile?[4.6,5.4,6.2]:[7,8.5,10,11.5,12.5]);
-      var box=document.createElement('div'); box.className='hz-vb';
+      var w=pickOne(kind==='drift'?(mobile?[4.2,5]:[6.5,7.5,8.5]):(mobile?[4.8,5.6,6.4]:[7,8.5,10,11.5]));
       if(rm||saveData){ vEl=document.createElement('img'); vEl.className='hz-ph'; vEl.alt=''; if(vd[2]) vEl.src=vd[2]; }
       else { vEl=document.createElement('video'); vEl.muted=true; vEl.loop=true; vEl.playsInline=true; vEl.setAttribute('playsinline',''); vEl.preload='auto'; vEl.tabIndex=-1; vEl.disablePictureInPicture=true; vEl.setAttribute('disableRemotePlayback',''); vEl.setAttribute('controlsList','nodownload noremoteplayback nofullscreen'); vEl.draggable=false; if(vd[2]) vEl.poster=vd[2]; vEl.src=vd[0]; isVid=true; }
-      vEl.style.setProperty('--vw',w+'em'); box.appendChild(vEl);
-      
-      hv.appendChild(box);
+      vEl.style.setProperty('--vw',w+'em'); f.appendChild(vEl);
     }
-    f.appendChild(hv); return {el:f,vid:isVid?vEl:null};
+    return {el:f,vid:isVid?vEl:null};
   }
 
-  /* ---- one actor = one GSAP timeline; when it ends a fresh actor is created (new content, path, speed, size) ---- */
-  var gsapReady=false;
-  function spawn(delay){
+  /* ---- one actor = one GSAP timeline in 3D; at the end a new actor (new content / path / speed / size / angle) replaces it ---- */
+  var gsapReady=false, visible=false;
+  function spawn(delay,quick){
     if(!gsapReady) return;
     var mobile=mob.matches, maxV=mobile?MAXV_M:MAXV_D;
     if(actors.length>=maxV) return;
-    var P=plan(); if(!P) return;
-    var wantVid=true, depth=Math.random();                           // depth: bigger + faster + more opaque when near
-    var c=content(wantVid), p=document.createElement('div'); p.className='hz-p'+(wantVid?' vd':''); p.appendChild(c.el); layer.appendChild(p);
-    var speed=rnd(mobile?26:34,mobile?55:88)*(.75+depth*.55), T=clamp(P.len/speed,mobile?7:8,mobile?13:20);
-    var cap=.62+depth*.38, s0=rnd(.1,.2), s1=.78+depth*.4;
-    var a={el:p,vid:c.vid,px:P.px,py:P.py,tl:null};
+    var kind=Math.random()<.58?'fly':'drift', P=plan(kind,quick); if(!P) return;
+    var c=content(kind), p=document.createElement('div'); p.className='hz-p'; p.appendChild(c.el); scene.appendChild(p);
+    var a={el:p,vid:c.vid,mx:P.mx,my:P.my,tl:null};
     actors.push(a);
-    var tl=gsap.timeline({delay:delay,onStart:function(){ if(c.vid&&visible){ c.vid.play&&c.vid.play().catch(function(){}); } },onComplete:function(){ finish(a); spawn(rnd(0,1.1)); }});
-    gsap.set(p,{x:P.sx,y:P.sy,xPercent:-50,yPercent:-50,scale:s0,opacity:0,force3D:true});
-    tl.to(p,{x:P.ex,y:P.ey,duration:T,ease:'sine.inOut'},0)                    // slow, smooth travel along its own line
-      .to(p,{scale:s1,duration:T*.62,ease:'power2.out'},0)                      // grows from small to its big size
-      .to(p,{scale:s1*1.08,duration:T*.38,ease:'none'},T*.62)                   // keeps drifting toward the viewer
-      .to(p,{opacity:cap,duration:T*.2,ease:'power1.out'},0)                    // fades in
-      .to(p,{opacity:0,duration:T*.3,ease:'power1.in'},T*.7);                   // fades out as it leaves
+    var tilt=kind==='fly'?1:.6, side=Math.random()<.5?-1:1;
+    var r0={y:side*rnd(16,30)*tilt,x:rnd(-9,9)*tilt,z:rnd(-7,7)}, r1={y:-side*rnd(2,14)*tilt,x:rnd(-6,6)*tilt,z:rnd(-6,6)};
+    gsap.set(p,{xPercent:-50,yPercent:-50,x:P.A.x,y:P.A.y,z:P.A.z,rotationY:r0.y,rotationX:r0.x,rotationZ:r0.z,opacity:0,force3D:true});
+    var T=P.T, tl=gsap.timeline({delay:delay,onStart:function(){ if(c.vid&&visible&&c.vid.play) c.vid.play().catch(function(){}); },onComplete:function(){ finish(a); spawn(rnd(0,1.1)); }});
+    tl.to(p,{x:P.B.x,y:P.B.y,z:P.B.z,duration:T,ease:P.ease},0)                     // travel through depth: it grows because it comes closer
+      .to(p,{rotationY:r1.y,rotationX:r1.x,rotationZ:r1.z,duration:T,ease:'sine.inOut'},0)   // slowly changes its viewing angle
+      .to(p,{opacity:P.cap,duration:quick?.5:T*.18,ease:'power1.out'},0)   // first batch fades in fast
+      .to(p,{opacity:0,duration:T*.3,ease:'power1.in'},T*.7);
     a.tl=tl;
   }
   function finish(a){
@@ -2099,14 +2099,9 @@ if(waFab&&waFooter){
   function clearAll(){ actors.slice().forEach(function(a){ if(a.tl) a.tl.kill(); finish(a); }); actors=[]; }
   function startAll(){
     if(!gsapReady) return; clearAll(); measure();
-    var n=mob.matches?N_M:N_D, step=mob.matches?1.1:.9;
-    for(var i=0;i<n;i++) spawn(i*step+rnd(0,.5));                              // staggered: every element starts at its own moment
+    var n=mob.matches?N_M:N_D, step=mob.matches?.35:.3;
+    for(var i=0;i<n;i++) spawn(i*step+rnd(0,.15),true);                 // staggered but tight: the first reel is on screen at once
   }
-
-  /* ---- scroll transition: the whole stream drifts up and dissolves when you leave the hero ---- */
-  var sp=0,raf=0,visible=false;
-  function paint(){ raf=0; layer.style.transform='translate3d(0,'+(-sp*H*.22).toFixed(1)+'px,0)'; layer.style.opacity=Math.max(0,1-sp*1.2).toFixed(3); }
-  function onScroll(){ if(!visible) return; var y=window.pageYOffset||0; sp=clamp((y-(hz.offsetTop||0))/(H||1),0,1); if(!raf) raf=requestAnimationFrame(paint); }
 
   /* ---- typing ---- */
   var typeT=null;
@@ -2115,35 +2110,44 @@ if(waFab&&waFooter){
     typeT=setTimeout(function step(){ i++; tx.textContent=WORD.slice(0,i); if(i<WORD.length) typeT=setTimeout(step,45+Math.random()*55); },500);
   }
 
-  /* reduced motion: a calm static arrangement, no library */
+  /* ---- reduced motion: a calm still composition, no libraries ---- */
   if(rm){
-    tx.textContent=WORD; hz.classList.add('in');
-    var pts=mob.matches?[[12,18],[88,20],[10,86],[90,88]]:[[8,24],[92,26],[10,78],[91,80]];
-    pts.forEach(function(pt,i){ var vd=VIDS[(i*3)%VIDS.length]; if(!vd[2]) vd=VIDS[0]; var p=document.createElement('div'); p.className='hz-p vd'; p.style.cssText='left:'+pt[0]+'%;top:'+pt[1]+'%;opacity:1;translate:-50% -50%'; var im=document.createElement('img'); im.className='hz-ph'; im.alt=''; im.src=vd[2]; im.style.setProperty('--vw',(mob.matches?5:8)+'em'); p.appendChild(im); layer.appendChild(p); });
+    tx.textContent=WORD; hz.classList.add('in'); measure();
+    var pts=mob.matches?[[12,16,.9],[88,18,.9],[10,88,.9]]:[[8,26,1.3],[92,28,1.3],[11,80,1.2],[90,78,1.2],[24,13,1],[78,13,1]];
+    pts.forEach(function(pt,i){ var p=document.createElement('div'); p.className='hz-p'; p.style.cssText='left:'+pt[0]+'%;top:'+pt[1]+'%;opacity:1;translate:-50% -50%'; var vd=VIDS[(i*3)%VIDS.length]; var im=document.createElement('img'); im.className='hz-ph'; im.alt=''; if(vd&&vd[2]) im.src=vd[2]; im.style.setProperty('--vw',(6*pt[2])+'em'); p.appendChild(im); scene.appendChild(p); });
     return;
   }
 
-  /* ---- load GSAP after the page is ready (keeps first paint fast), then run while the hero is on screen ---- */
+  /* ---- libraries after the page is ready, then run while the hero is visible ---- */
   var started=false;
-  function loadGsap(cb){
-    if(window.gsap){cb();return;}
-    var s=document.createElement('script'); s.src='hero/gsap.min.js'; s.async=true; s.onload=cb; document.head.appendChild(s);
+  function loadJs(src,cb){ var s=document.createElement('script'); s.src=src; s.async=true; s.onload=cb; document.head.appendChild(s); }
+  function setupScroll(){
+    if(!window.ScrollTrigger) return; gsap.registerPlugin(ScrollTrigger);
+    // the reel space lifts away and dissolves as you scroll out of the hero
+    gsap.to(float,{y:function(){return -H*.22;},opacity:0,ease:'none',scrollTrigger:{trigger:hz,start:'top top',end:'bottom top',scrub:true}});
+    gsap.to(main,{y:function(){return H*.06;},opacity:.0,ease:'none',scrollTrigger:{trigger:hz,start:'45% top',end:'bottom top',scrub:true}});
   }
   function onVisible(on){
     visible=on;
-    if(on){ hz.classList.remove('paused'); hz.classList.add('in'); typeIn(); onScroll();
-      if(gsapReady){ if(!started){ started=true; startAll(); } else { gsap.globalTimeline.resume(); actors.forEach(function(a){ if(a.vid) a.vid.play&&a.vid.play().catch(function(){}); }); } }
+    if(on){ hz.classList.remove('paused'); hz.classList.add('in'); typeIn();
+      if(gsapReady){ if(!started){ started=true; startAll(); } else { gsap.globalTimeline.resume(); actors.forEach(function(a){ if(a.vid&&a.vid.play) a.vid.play().catch(function(){}); }); } }
     } else {
       clearTimeout(typeT); hz.classList.add('paused'); hz.classList.remove('in'); tx.textContent='';
       if(gsapReady){ gsap.globalTimeline.pause(); actors.forEach(function(a){ if(a.vid) a.vid.pause(); }); }
     }
   }
   new IntersectionObserver(function(es){es.forEach(function(en){ onVisible(en.isIntersecting); });},{threshold:[0,.15]}).observe(hz);
-  function init(){ loadGsap(function(){ gsapReady=!!window.gsap; if(!gsapReady) return; gsap.config({nullTargetWarn:false}); gsap.ticker.lagSmoothing(500,33); if(visible&&!started){ started=true; startAll(); } }); }
-  if(document.readyState==='complete') setTimeout(init,150); else addEventListener('load',function(){ setTimeout(init,150); });
-  addEventListener('scroll',onScroll,{passive:true});
+  function init(){
+    loadJs('hero/gsap.min.js',function(){
+      gsap.config({nullTargetWarn:false}); gsap.ticker.lagSmoothing(500,33); gsapReady=true;
+      loadJs('hero/ScrollTrigger.min.js',setupScroll);
+      if(visible&&!started){ started=true; startAll(); }
+    });
+  }
+  VIDS.forEach(function(v){ if(v[2]){ var im=new Image(); im.src=v[2]; } });   // warm the poster frames
+  init();                                                                          // start right away (GSAP is preloaded in <head>), not after the window load event
   var rz=null; addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(function(){ measure(); if(gsapReady&&visible){ startAll(); } },250); });
-  document.addEventListener('visibilitychange',function(){ if(!gsapReady) return; if(document.hidden){ gsap.globalTimeline.pause(); actors.forEach(function(a){ if(a.vid) a.vid.pause(); }); } else if(visible){ gsap.globalTimeline.resume(); actors.forEach(function(a){ if(a.vid) a.vid.play&&a.vid.play().catch(function(){}); }); } });
+  document.addEventListener('visibilitychange',function(){ if(!gsapReady) return; if(document.hidden){ gsap.globalTimeline.pause(); actors.forEach(function(a){ if(a.vid) a.vid.pause(); }); } else if(visible){ gsap.globalTimeline.resume(); actors.forEach(function(a){ if(a.vid&&a.vid.play) a.vid.play().catch(function(){}); }); } });
 })();
 </script>
 </body>
