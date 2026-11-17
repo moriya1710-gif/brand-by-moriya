@@ -1036,9 +1036,9 @@ html.win-open{overflow:hidden}
 .hz-main h1 .en em{font-family:var(--serif-en);font-style:italic;font-weight:400;text-transform:lowercase;letter-spacing:0;color:var(--hz-burg);font-size:.8em;margin-inline:.06em}
 .hz-main h1 .he{display:block;text-align:right;margin-top:clamp(10px,1.4vw,18px);font-family:var(--serif-he);font-weight:800;font-size:clamp(1.25rem,2.2vw,1.9rem);letter-spacing:-.01em;color:var(--hz-burg)}
 .hz-caps{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 0;margin-top:clamp(14px,1.8vw,22px);font-family:var(--body);font-weight:500;font-size:1rem;letter-spacing:0;color:#3b3335;direction:rtl}
-.hz-caps span{display:inline-flex;align-items:center;gap:.7em;padding:0 1.5rem}
-.hz-caps span+span{border-inline-start:1px solid rgba(43,43,43,.22)}
-.hz-caps span::before{content:"";flex:none;width:1.2em;height:1.2em}
+.hz-caps .hz-cap{display:inline-flex;align-items:center;gap:.7em;padding:0 1.5rem}
+.hz-caps .hz-cap+.hz-cap{border-inline-start:1px solid rgba(43,43,43,.22)}
+.hz-caps .hz-cap::before{content:"";flex:none;width:1.2em;height:1.2em}
 .hz-slogan{margin-top:12px;font-family:var(--serif-he);font-weight:600;font-size:clamp(1rem,1.6vw,1.2rem);color:var(--hz-char)}
 .hz-bio{margin-top:10px;max-width:34em;font-family:var(--body);font-weight:400;font-size:clamp(.98rem,1.25vw,1.05rem);line-height:1.75;color:#4a4042}
 .hz-main .ig-actions{margin-top:clamp(18px,2.2vw,28px);justify-content:center}
@@ -1052,7 +1052,7 @@ html.win-open{overflow:hidden}
   .hz-search svg{width:1.5em;height:1.5em}.hz-q{font-size:1.65em}.hz-x{width:2.3em;height:2.3em}
   .hz-main h1 .en{font-size:clamp(2.1rem,10.4vw,3.4rem)}
   .hz-caps{display:grid;grid-template-columns:auto auto;justify-content:center;gap:.7rem 1.1rem;font-size:.86rem;letter-spacing:0;max-width:100%}
-  .hz-caps span{padding:0;border:0!important;text-align:start;align-items:flex-start}
+  .hz-caps .hz-cap{padding:0;border:0!important;text-align:start;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){.hz-fr{animation:none!important}.hz-p{opacity:var(--op,1)!important}}
 
@@ -1119,16 +1119,27 @@ html.win-open{overflow:hidden}
 /* ==== HERO · subtle glass (chosen): glass search, glass service chips with their own emoji, glass frames on the reels ==== */
 .hz .hz-search{background:rgba(255,255,255,.64);border:1px solid rgba(255,255,255,.95)}
 .hz .hz-caps{gap:.6rem}
-.hz .hz-caps span{padding:.55em 1.1em;border-radius:40px;background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 22px -14px rgba(43,43,43,.45),inset 0 1px 0 #fff}
-.hz .hz-caps span+span{border-inline-start:1px solid rgba(255,255,255,.92)}
+.hz .hz-caps .hz-cap{padding:.55em 1.1em;border-radius:40px;background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 22px -14px rgba(43,43,43,.45),inset 0 1px 0 #fff}
+.hz .hz-caps .hz-cap+.hz-cap{border-inline-start:1px solid rgba(255,255,255,.92)}
 .hz .hz-p video,.hz .hz-p .hz-ph{border:.22em solid rgba(255,255,255,.6);box-shadow:0 1.6em 2.8em -1em rgba(43,43,43,.5),0 0 0 .12em rgba(255,255,255,.35)}
 /* one fitting emoji per service */
-.hz .hz-caps span::before{width:1.3em;height:1.3em;background-repeat:no-repeat;background-position:center;background-size:contain}
-.hz .hz-caps span:nth-child(1)::before{background-image:url("אלמנטים/cut/emo-bubble.png")}
-.hz .hz-caps span:nth-child(2)::before{background-image:url("אלמנטים/cut/emo-camera.png")}
-.hz .hz-caps span:nth-child(3)::before{background-image:url("אלמנטים/cut/emo-write.png")}
-.hz .hz-caps span:nth-child(4)::before{background-image:url("אלמנטים/cut/emo-handshake.png")}
-@media(max-width:900px){.hz .hz-caps span{padding:.45em .85em;border:1px solid rgba(255,255,255,.92)!important}}
+.hz .hz-caps .hz-cap::before{width:1.3em;height:1.3em;background-repeat:no-repeat;background-position:center;background-size:contain}
+.hz .hz-caps .hz-cap:nth-child(1)::before{background-image:url("אלמנטים/cut/emo-bubble.png")}
+.hz .hz-caps .hz-cap:nth-child(2)::before{background-image:url("אלמנטים/cut/emo-camera.png")}
+.hz .hz-caps .hz-cap:nth-child(3)::before{background-image:url("אלמנטים/cut/emo-write.png")}
+.hz .hz-caps .hz-cap:nth-child(4)::before{background-image:url("אלמנטים/cut/emo-handshake.png")}
+@media(max-width:900px){.hz .hz-caps .hz-cap{padding:.45em .85em;border:1px solid rgba(255,255,255,.92)!important}}
+/* ==== choose a service in the hero (chips are buttons; a short line explains the chosen one) ==== */
+.hz .hz-caps .hz-cap{appearance:none;font:inherit;font-weight:500;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .3s,color .3s,box-shadow .3s,transform .3s}
+.hz .hz-caps .hz-cap:hover{background:rgba(255,255,255,.8);transform:translateY(-2px)}
+.hz .hz-caps .hz-cap:focus-visible{outline:2px solid var(--hz-burg);outline-offset:3px}
+.hz .hz-caps .hz-cap[aria-pressed="true"]{background:var(--hz-burg);color:#F3ECE4;border-color:var(--hz-burg);box-shadow:0 12px 24px -12px rgba(106,30,45,.7);transform:none}
+.hz-pick{min-height:1.7em;margin-top:clamp(10px,1.2vw,14px);font-family:var(--body);font-size:.95rem;color:#5b5153;display:flex;flex-wrap:wrap;gap:.2em .7em;align-items:baseline;justify-content:center;max-width:36em;direction:rtl;text-align:center}
+.hz-pick .hp-a{color:var(--hz-burg);font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;white-space:nowrap}
+.hz-pick.on .hp-t{color:var(--hz-char);font-weight:500}
+@media(max-width:900px){.hz-pick{min-height:3.4em;font-size:.88rem}}
+@media(prefers-reduced-motion:reduce){.hz .hz-caps .hz-cap{transition:none}}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Gveret+Levin&display=swap" rel="stylesheet">
 <link rel="preload" href="hero/gsap.min.js" as="script">
@@ -1154,7 +1165,8 @@ html.win-open{overflow:hidden}
     <div class="hz-main">
       <div class="hz-search" role="img" aria-label="Social &amp; content"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="hz-q"><b class="tx"></b></span><span class="hz-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></div>
       <h1><span class="en">Brand <em>by</em> Moriya</span><span class="he">מוריה מימון</span></h1>
-      <div class="hz-caps" aria-label="השירותים"><span data-n="01">ניהול סושיאל מדיה</span><span data-n="02">ימי צילום ויצירת תוכן</span><span data-n="03">אסטרטגיית סושיאל</span><span data-n="04">ליווי וייעוץ</span></div>
+      <div class="hz-caps" role="group" aria-label="בחרו שירות"><button type="button" class="hz-cap" data-svc="manage" aria-pressed="false">ניהול סושיאל מדיה</button><button type="button" class="hz-cap" data-svc="shoot" aria-pressed="false">ימי צילום ויצירת תוכן</button><button type="button" class="hz-cap" data-svc="strategy" aria-pressed="false">אסטרטגיית סושיאל</button><button type="button" class="hz-cap" data-svc="consult" aria-pressed="false">ליווי וייעוץ</button></div>
+      <p class="hz-pick" aria-live="polite"><span class="hp-t">לחצו על שירות כדי לראות במה מדובר</span> <a class="hp-a" href="#services">לשירותים ↓</a></p>
       <div class="ig-actions">
         <a class="btn btn-primary" href="https://wa.me/972509201625?text=%D7%94%D7%99%D7%99%20%D7%9E%D7%95%D7%A8%D7%99%D7%94%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%9D%20%D7%A9%D7%9C%D7%9A." target="_blank" rel="noopener" data-cursor>בואו נדבר</a>
         <a class="btn btn-ghost" href="#work" data-cursor>לצפייה בעבודות ↓</a>
@@ -2148,6 +2160,21 @@ if(waFab&&waFooter){
   init();                                                                          // start right away (GSAP is preloaded in <head>), not after the window load event
   var rz=null; addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(function(){ measure(); if(gsapReady&&visible){ startAll(); } },250); });
   document.addEventListener('visibilitychange',function(){ if(!gsapReady) return; if(document.hidden){ gsap.globalTimeline.pause(); actors.forEach(function(a){ if(a.vid) a.vid.pause(); }); } else if(visible){ gsap.globalTimeline.resume(); actors.forEach(function(a){ if(a.vid&&a.vid.play) a.vid.play().catch(function(){}); }); } });
+})();
+/* choose a service in the hero -> a short line about it (hero only; the folders section is untouched) */
+(function(){
+  var caps=[].slice.call(document.querySelectorAll('.hz-cap')), pick=document.querySelector('.hz-pick');
+  if(!caps.length||!pick) return;
+  var pt=pick.querySelector('.hp-t'), pa=pick.querySelector('.hp-a'), idle=pt.textContent, idleA=pa.textContent, cur=null;
+  var SHORT={manage:'אתם מנהלים את העסק, אני מנהלת את הסושיאל',shoot:'מגיעים ליום צילום אחרי שהכול כבר מתוכנן',strategy:'לא רק מה לפרסם, אלא איך התוכן עובד עבורכם',consult:'מישהי לחשוב איתכם ולתת כיוון'};
+  function set(k){
+    cur=(k===cur)?null:k;
+    caps.forEach(function(c){c.setAttribute('aria-pressed',c.dataset.svc===cur?'true':'false');});
+    if(!cur){ pick.classList.remove('on'); pt.textContent=idle; pa.textContent=idleA; return; }
+    pick.classList.add('on'); pt.textContent=SHORT[cur]; pa.textContent='לכל השירותים ↓';
+  }
+  caps.forEach(function(c){c.addEventListener('click',function(){set(c.dataset.svc);});});
+  pa.addEventListener('click',function(e){var t=document.getElementById('services'); if(!t) return; e.preventDefault(); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});});
 })();
 </script>
 </body>
