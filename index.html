@@ -32,7 +32,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{background:var(--ink);color:var(--greige);font-family:var(--body);font-weight:300;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--greige);font-family:var(--body);font-weight:300;line-height:1.7;overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 ::selection{background:var(--burgundy);color:var(--greige)}
 
@@ -1056,7 +1056,22 @@ html.win-open{overflow:hidden}
 }
 @media(prefers-reduced-motion:reduce){.hz-fr{animation:none!important}.hz-p{opacity:var(--op,1)!important}}
 
-.hz-feedwrap{padding:0 clamp(18px,5vw,56px) clamp(46px,6vw,72px)}
+/* ==== FEED · scroll carousel on smooth burgundy: 3D coverflow on desktop, card stack on mobile ==== */
+.hz-feedwrap{background:#6A1E2D;padding:0 0 clamp(30px,5vw,56px)}
+.hz-feedwrap .eyebrow{color:#C8A97E}
+.feed{position:relative;direction:ltr}
+.feed-pin{position:sticky;top:0;height:100vh;overflow:hidden}
+.feed-stage{position:absolute;inset:0;perspective:1400px}
+.feed-card{position:absolute;left:50%;top:50%;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#2C1016;box-shadow:0 26px 54px -22px rgba(0,0,0,.6);will-change:transform,opacity;transform:translate(-50%,-50%)}
+.feed-card img{width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none}
+.feed.is-flow .feed-card{height:min(64vh,540px)}
+.feed.is-stack .feed-card{width:min(74vw,calc(58vh*.8))}
+.feed-count{position:absolute;bottom:5vh;left:0;right:0;text-align:center;font-family:var(--body-en);font-weight:500;letter-spacing:.25em;font-size:.78rem;color:#C8A97E}
+/* reduced motion: a plain swipeable row, no pinning */
+.feed.is-static .feed-pin{position:static;height:auto;overflow:visible}
+.feed.is-static .feed-stage{position:static;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 6vw 20px;perspective:none}
+.feed.is-static .feed-card{position:static;flex:none;height:min(60vh,460px);scroll-snap-align:center;transform:none!important;opacity:1!important}
+.feed.is-static .feed-count{display:none}
 
 /* ==== BUTTONS · one language for the whole site (reference: Silvia): glass pills, a pearl primary pill with a round arrow chip, dark glass header pill (design-lab) ==== */
 :root{--bt-arrow-w:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 6l-6 6 6 6'/%3E%3C/svg%3E");
@@ -1182,7 +1197,7 @@ html.win-open{overflow:hidden}
 </header>
 <div class="hz-feedwrap">
   <div class="sec-hd reveal" id="feed" style="text-align:center;max-width:940px;margin:clamp(42px,6vw,72px) auto clamp(28px,4vw,40px)"><div class="eyebrow lt">Feed</div></div>
-  <div class="ig-grid reveal" id="feedgrid"></div>
+  <div class="feed" id="feed3d" aria-label="פוסטים מהפיד"><div class="feed-pin"><div class="feed-stage"></div><div class="feed-count" aria-hidden="true"></div></div></div>
 </div>
 
 <div class="marquee"><div class="mtrack">
@@ -1704,21 +1719,63 @@ document.addEventListener('click',function(e){
 });
 
 
-/* פיד - exactly 6 designed feed pieces from פיד/, no video here per spec */
-var FEED_IMAGES=[
- "פיד/1.png",
- "פיד/Brown Minimalist Beauty Spa Instagram Post.png",
- "פיד/גוגל הכריזה בכנס השנתי (1).png",
- "פיד/מגדל.png",
- "פיד/מוריה סושיאלי.png",
- "פיד/עיצוב ללא שם (2).png"
-];
-var feedGrid=document.getElementById('feedgrid');
-FEED_IMAGES.forEach(function(src){
- var t=document.createElement('div');t.className='ig-tile';
- t.innerHTML='<img src="'+encodeURI(src)+'" loading="lazy" alt="פיד"><div class="ov"></div>';
- feedGrid.appendChild(t);
-});
+/* FEED: scroll carousel. Posts come from פיד/web/feed.json (made by tools/optimize-feed.js), so adding a post needs no code change. */
+(function(){
+ var root=document.getElementById('feed3d'); if(!root) return;
+ var stage=root.querySelector('.feed-stage'), cnt=root.querySelector('.feed-count');
+ var FALLBACK=["פיד/web/1-4a47a0.webp","פיד/web/Brown-Minimalist-Beauty--7f08b3.webp","פיד/web/1-759370.webp","פיד/web/post-601520.webp","פיד/web/post-518697.webp","פיד/web/2-bfcf32.webp"];
+ var mob=matchMedia('(max-width:760px)'), reduce=matchMedia('(prefers-reduced-motion:reduce)');
+ var dir=(document.documentElement.getAttribute('dir')==='rtl')?-1:1;     /* upcoming posts arrive from the reading side */
+ var cards=[], N=0;
+ function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+ function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+ function build(list){
+  list.forEach(function(src,i){
+   var c=document.createElement('div'); c.className='feed-card';
+   var im=new Image(); im.src=encodeURI(src); im.alt='פוסט מהפיד '+(i+1); im.draggable=false; im.decoding='async'; if(i>2) im.loading='lazy';
+   c.appendChild(im); stage.appendChild(c); cards.push(c);
+  });
+  N=cards.length;
+  if(!N) return;
+  if(mob.matches) cards.slice().reverse().forEach(function(c){stage.appendChild(c);});   /* stack: first post on top */
+  layout();
+ }
+ function layout(){
+  var st=reduce.matches, sk=mob.matches&&!st;
+  root.classList.toggle('is-static',st); root.classList.toggle('is-stack',sk); root.classList.toggle('is-flow',!st&&!sk);
+  if(st||N<2){ root.style.height=''; cards.forEach(function(c){c.style.transform='';c.style.opacity='';}); if(N<2&&!st){ update(); } return; }
+  var per=sk?62:52;                                                         /* vh of scrolling per post */
+  root.style.height='calc(100vh + '+((N-1)*per)+'vh)';
+  update();
+ }
+ function prog(){ var r=root.getBoundingClientRect(); return clamp(-r.top/Math.max(1,r.height-innerHeight),0,1); }
+ function update(){
+  if(reduce.matches||!N) return;
+  var pos=N>1?prog()*(N-1):0, i, c;
+  if(mob.matches){
+   for(i=0;i<N;i++){
+    c=cards[i]; var idx=i, t=clamp(pos-idx,0,1), after=idx-pos, sgn=(idx%2?1:-1);
+    if(t>0){ var e=ease(t); c.style.transform='translate(-50%,-50%) translate('+(sgn*e*70)+'vw,'+(-e*28)+'vh) rotate('+(sgn*e*28)+'deg)'; c.style.opacity=1-clamp((t-.55)/.45,0,1); }
+    else { var k=clamp(after,0,4); c.style.transform='translate(-50%,-50%) translate('+(sgn*k*5)+'px,'+(k*14)+'px) scale('+(1-k*.045)+') rotate('+(sgn*Math.min(k,3)*1.6)+'deg)'; c.style.opacity=k>3.2?0:1; }
+    c.style.zIndex=N-idx;
+   }
+  } else {
+   for(i=0;i<N;i++){
+    c=cards[i]; var d=i-pos, a=Math.abs(d), sg=d<0?-1:1, s=1-clamp(a,0,3)*.12;
+    var x=d*52+(a>1?sg*(a-1)*20:0);
+    c.style.transform='translate(-50%,-50%) translateX('+(dir*x)+'%) translateZ('+(-a*160)+'px) rotateY('+(dir*clamp(d,-1.4,1.4)*-48)+'deg) scale('+s+')';
+    c.style.opacity=clamp(1.25-a*.32,0,1); c.style.zIndex=100-Math.round(a*10);
+   }
+  }
+  cnt.textContent=String(clamp(Math.round(pos)+1,1,N)).padStart(2,'0')+' / '+String(N).padStart(2,'0');
+ }
+ var tick=false; function req(){ if(tick) return; tick=true; requestAnimationFrame(function(){ tick=false; update(); }); }
+ addEventListener('scroll',req,{passive:true}); addEventListener('resize',req);
+ function relayout(){ if(N){ if(mob.matches){ cards.slice().reverse().forEach(function(c){stage.appendChild(c);}); } else { cards.forEach(function(c){stage.appendChild(c);}); } layout(); } }
+ [mob,reduce].forEach(function(m){ if(m.addEventListener) m.addEventListener('change',relayout); else m.addListener(relayout); });
+ fetch('פיד/web/feed.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(a){ return a.map(function(x){return x.file;}); })
+  .catch(function(){ return FALLBACK; }).then(build);
+})();
 
 /* AI PROJECTS - every real file in AI/, looping marquee (content duplicated once for a seamless -50% loop) */
 var AI_IMAGES=[
