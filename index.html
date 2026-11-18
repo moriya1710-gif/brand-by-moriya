@@ -342,6 +342,23 @@ footer .mono{font-family:var(--display);font-size:1.2rem;color:var(--greige)}
 .trusted-title{font-family:var(--serif-he);font-weight:900;font-size:clamp(2.7rem,8.6vw,7rem);line-height:.98;color:var(--greige);margin-bottom:clamp(56px,9vw,120px)}
 .trusted-title.subtle{font-weight:500;font-size:clamp(1.05rem,1.8vw,1.4rem);line-height:1.4;white-space:nowrap;color:var(--greige-dim);margin-bottom:clamp(36px,5vw,64px)}
 @media(max-width:480px){.trusted-title.subtle{white-space:normal;font-size:1rem}}
+/* brands: one tile language (same size, radius, shadow), each logo keeps its own colours; the row drifts sideways */
+.logo-band{direction:ltr;overflow:hidden;padding:18px 0 26px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.logo-track{display:flex;width:max-content;animation:logoDrift 30s linear infinite}
+.logo-band:hover .logo-track,.logo-band:focus-within .logo-track{animation-play-state:paused}
+.logo-set{display:flex;align-items:center;flex:none;list-style:none;margin:0;padding:0 clamp(16px,2vw,26px) 0 0;gap:clamp(16px,2vw,26px)}
+.logo-set .tile{flex:none;width:clamp(124px,14vw,176px);aspect-ratio:3/2;border-radius:20px;background:var(--bg,#F3ECE4);display:flex;align-items:center;justify-content:center;padding:9px 12px;overflow:hidden;box-shadow:0 16px 28px -20px rgba(0,0,0,.8);transition:transform .4s}
+.logo-set .tile:hover{transform:translateY(-4px)}
+.logo-set .tile img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;mix-blend-mode:multiply;user-select:none}
+.logo-set .tile.full{padding:0}.logo-set .tile.full img{height:100%;max-width:none;mix-blend-mode:normal}
+.logo-set .tile.txt{font-family:var(--serif-he);font-weight:600;font-size:1.15rem;color:#F3ECE4;text-align:center}
+@keyframes logoDrift{to{transform:translateX(-50%)}}
+/* this section sits on the brand burgundy */
+#brands.trusted{background:#5B1A27}
+#brands .trusted-title.subtle{color:#F3ECE4}
+.logo-set .tile.txt{background:#3B131B!important;box-shadow:inset 0 0 0 1px rgba(200,169,126,.5),0 16px 28px -20px rgba(0,0,0,.8)}
+@media(max-width:600px){.logo-set .tile{width:116px;border-radius:16px}.logo-set .tile.txt{font-size:1rem}.logo-track{animation-duration:24s}}
+@media(prefers-reduced-motion:reduce){.logo-track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}.logo-set{flex-wrap:wrap;justify-content:center;padding:0 20px;row-gap:18px}.logo-set[aria-hidden="true"]{display:none}.logo-band{-webkit-mask-image:none;mask-image:none}}
 .logogrid{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(16px,2.4vw,34px);max-width:1100px;margin:0 auto}
 .logocell{width:clamp(150px,22vw,240px);aspect-ratio:3/2;background:rgba(230,224,221,.04);border-radius:6px;display:flex;align-items:center;justify-content:center;padding:22px;transition:background .4s,transform .4s}
 .logocell:hover{background:rgba(230,224,221,.08);transform:translateY(-4px)}
@@ -1195,33 +1212,30 @@ html.win-open{overflow:hidden}
   </div>
 </header>
 <div class="hz-feedwrap">
-  <div class="sec-hd reveal" id="feed" style="text-align:center;max-width:940px;margin:clamp(42px,6vw,72px) auto clamp(28px,4vw,40px)"><div class="eyebrow lt">Feed</div></div>
+  <div class="sec-hd reveal" id="feed" style="text-align:center;max-width:940px;margin:clamp(42px,6vw,72px) auto clamp(28px,4vw,40px)"></div>
   <div class="feed" id="feed3d" aria-label="פוסטים מהפיד"><div class="feed-pin"><div class="feed-stage"></div><div class="feed-count" aria-hidden="true"></div></div></div>
 </div>
 
-<div class="marquee"><div class="mtrack">
-  <span class="lt">Dare to be Desired</span><span class="lt">·</span><span class="lt">Dare to be Desired</span><span class="lt">·</span>
-  <span class="lt">Dare to be Desired</span><span class="lt">·</span><span class="lt">Dare to be Desired</span><span class="lt">·</span>
-</div></div>
-
 <!-- TRUSTED logos -->
 <section class="trusted" id="brands" style="padding-block:clamp(56px,8vw,90px)">
-  <div class="eyebrow reveal lt" style="margin-bottom:14px">Trusted By</div>
   <h2 class="trusted-title subtle reveal">מותגים ועסקים שעבדתי איתם</h2>
-  <div class="logogrid reveal">
-    <div class="logocell"><img src="לוגואים/רימקס.webp" alt="RE/MAX Success" loading="lazy"></div>
-    <div class="logocell"><img src="לוגואים/באג.png" alt="BUG Digital Lifestyle" loading="lazy"></div>
-    <div class="logocell"><img src="לוגואים/נמל.png" alt="הנמל של תל אביב" loading="lazy"></div>
-    <div class="logocell"><img src="לוגואים/אתרים.png" alt="ATARIM" loading="lazy"></div>
-    <div class="logocell"><img src="לוגואים/ארביטראז.jfif" alt="ארביטראז" loading="lazy"></div>
-    <div class="logocell"><img src="לוגואים/קרביץ.png" alt="קרביץ" loading="lazy"></div>
-    <div class="logocell"><span class="he">רשתות מלונות</span></div>
+  <div class="logo-band reveal" aria-label="מותגים ועסקים שעבדתי איתם">
+    <div class="logo-track">
+      <ul class="logo-set">
+      <li class="tile" style="--bg:#F3ECE4"><img src="לוגואים/web/remax.webp" alt="RE/MAX Success" loading="lazy" draggable="false"></li>
+      <li class="tile" style="--bg:#F3ECE4"><img src="לוגואים/web/bug.webp" alt="BUG Digital Lifestyle" loading="lazy" draggable="false"></li>
+      <li class="tile" style="--bg:#F3ECE4"><img src="לוגואים/web/port.webp" alt="הנמל של תל אביב" loading="lazy" draggable="false"></li>
+      <li class="tile" style="--bg:#F3ECE4"><img src="לוגואים/web/atarim.webp" alt="ATARIM" loading="lazy" draggable="false"></li>
+      <li class="tile full" style="--bg:#1C172B"><img src="לוגואים/web/arbitrage.webp" alt="ארביטראז" loading="lazy" draggable="false"></li>
+      <li class="tile full" style="--bg:#F26921"><img src="לוגואים/web/kravitz.webp" alt="קרביץ" loading="lazy" draggable="false"></li>
+      <li class="tile" style="--bg:#F3ECE4"><img src="לוגואים/web/tzamaa.webp" alt="צמאה" loading="lazy" draggable="false"></li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <!-- HI I'M MORIYA -->
 <section class="intro">
-  <div class="eyebrow reveal lt">Hi, I'm Moriya</div>
   <div class="intro-wrap">
     <div class="intro-lines">
       <p class="reveal intro-title">היי, אני מוריה 👋</p>
@@ -1240,7 +1254,6 @@ html.win-open{overflow:hidden}
 <!-- AI PROJECTS -->
 <section class="ai-projects" id="ai-projects">
   <div class="sec-hd reveal" style="text-align:center">
-    <div class="eyebrow lt">AI Projects</div>
   </div>
   <div class="ai-marquee">
     <div class="ai-track" id="aiTrack"></div>
@@ -1249,7 +1262,6 @@ html.win-open{overflow:hidden}
 
 <!-- THE MISSION -->
 <section class="statement light">
-  <div class="eyebrow reveal lt">The Mission</div>
   <h2 class="reveal line-mission">עסקים 🤝 <b>אסטרטגיית סושיאל</b> 🤝 מטרות עסקיות</h2>
   <p class="reveal mission-note">ברגע שיש לכם תוכנית אסטרטגית ברורה, הדרך ליצירת הסרטונים הנכונים בשבילכם הופכת להרבה יותר קלה.</p>
 </section>
@@ -1257,7 +1269,6 @@ html.win-open{overflow:hidden}
 <!-- SELECTED WORK -->
 <section class="work" id="work">
   <div class="sec-hd reveal" style="text-align:center">
-    <div class="eyebrow lt">Selected Work</div>
     <h2><span class="line1">מאפיון לקוח ועד התוצאה הסופית</span><br><em>התוכן</em> 📸</h2>
   </div>
   <div class="stat-chip lt" style="top:10%;right:8%"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg><b>15,607</b> views</div>
@@ -1297,7 +1308,6 @@ html.win-open{overflow:hidden}
 <section class="bts" id="bts">
   <div class="bts-grid">
     <div class="bts-copy reveal">
-      <div class="eyebrow lt">Content Series</div>
       <h2>מאחורי <em>השיווק</em></h2>
       <p>סדרת תוכן שבה אני מפרקת מהלכי שיווק ואסטרטגיות סושיאל של מותגים גדולים, ומסבירה מה עומד מאחורי המהלך ולמה הוא עובד.</p>
       <div class="bts-icons">
@@ -1322,7 +1332,6 @@ html.win-open{overflow:hidden}
 <section class="bl" id="thinking">
   <div class="bl-head">
     <div>
-      <div class="bl-kick lt reveal"><i></i>I BELIEVE</div>
       <h2 class="reveal">תוכן הוא נקודת המפגש בין המותג לקהל. <em>האסטרטגיה קובעת לאן הוא יוביל.</em></h2>
       <p class="bl-statement reveal">ויראליות היא חלק מהאסטרטגיה.<br>היא לא האסטרטגיה.</p>
       <div class="bl-leads reveal">
@@ -1334,7 +1343,6 @@ html.win-open{overflow:hidden}
   </div>
 
   <div class="bl-ph reveal">
-    <div class="bl-kick lt"><i></i>THE PROCESS</div>
     <h3>מאיפה <em>מתחילים?</em></h3>
     <p class="bl-ph-hand">ככה נתחיל לעבוד</p>
   </div>
@@ -1385,7 +1393,6 @@ html.win-open{overflow:hidden}
 
   <div class="bl-found">
     <div>
-      <div class="bl-kick lt reveal"><i></i>THE FOUNDATIONS</div>
       <h3 class="reveal">כל מהלך שאני בונה <em>נשען על שלושה יסודות</em></h3>
       <div class="bl-wins">
         <div class="bl-win reveal"><div class="bar"><i></i><i></i><i></i><b>01 / MIND</b></div><div class="body"><span class="en">Mind</span><p>הבנת הקהל, הפסיכולוגיה שמאחורי הבחירות שלו והדרך שבה הוא מקבל החלטות.</p></div></div>
@@ -1422,7 +1429,6 @@ html.win-open{overflow:hidden}
 <section class="services desk" id="services">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="ff-blue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ED5FB"/><stop offset="1" stop-color="#52B2F4"/></linearGradient><linearGradient id="fb-blue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4BA8EE"/><stop offset="1" stop-color="#2E8BDB"/></linearGradient></defs></svg>
   <div class="desk-head">
-    <div class="desk-kick lt"><i></i>04 FOLDERS</div>
     <h2>איך אני עוזרת למותגים לבנות <em>נוכחות דיגיטלית שעובדת?</em></h2>
     <p class="desk-hint"><svg viewBox="0 0 30 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M28 3C20 1 10 4 4 14m0 0l1-7m-1 7l7-2"/></svg>מעבירים עכבר על תיקייה ולוחצים כדי לפתוח</p>
   </div>
@@ -1488,7 +1494,6 @@ html.win-open{overflow:hidden}
 <section class="skills sk" id="skills">
   <div class="sk-stage">
     <div class="sk-head lt">
-      <div class="sk-kick"><i></i>Skills &amp; Tools</div>
       <h2>Skills</h2>
       <p class="sk-sub">From strategy and research to content creation, design and performance analysis.</p>
     </div>
@@ -1513,7 +1518,7 @@ html.win-open{overflow:hidden}
           </div>
         </div>
       </div>
-      <div class="ph" aria-hidden="true"><div class="fi"><div class="ps"><div class="mbs"><div class="mb-st"><b>9:41</b></div><div class="mb-h"><em>M</em><span>brand by moriya<small>Instagram</small></span><i class="chev"></i><u class="bell"></u></div><div class="mb-act"><b>+ Create post</b><span>Create ad</span></div><div class="mb-card"><h6>Insights<small>Views</small></h6><div class="mb-dn"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.9155" fill="none" stroke="#4B0FD8" stroke-width="3.6" stroke-dasharray="85.2 14.8" transform="rotate(-90 18 18)"/><circle cx="18" cy="18" r="15.9155" fill="none" stroke="#C32AC0" stroke-width="3.6" stroke-dasharray="14.8 85.2" stroke-dashoffset="-85.2" transform="rotate(-90 18 18)"/></svg><div><b>51,446</b><span>Views</span></div></div><div class="mb-lg"><span><i style="background:#C32AC0"></i>Followers<b>14.8%</b></span><span><i style="background:#4B0FD8"></i>Non-followers<b>85.2%</b></span></div></div><div class="mb-card"><h6>Recent posts</h6><div class="mb-th"><img src="פיד/1.png" alt=""><img src="פיד/מגדל.png" alt=""><img src="פיד/עיצוב ללא שם (2).png" alt=""></div></div><div class="mb-nav"><span class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg><small>Home</small></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v15H4zM4 10h16M9 3v4M15 3v4"/></svg><small>Planner</small></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/></svg><small>Inbox</small></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 20V10M12 20V4M19 20v-7"/></svg><small>Insights</small></span></div></div></div></div></div>
+      <div class="ph" aria-hidden="true"><div class="fi"><div class="ps"><div class="mbs"><div class="mb-st"><b>9:41</b></div><div class="mb-h"><em>M</em><span>brand by moriya<small>Instagram</small></span><i class="chev"></i><u class="bell"></u></div><div class="mb-act"><b>+ Create post</b><span>Create ad</span></div><div class="mb-card"><h6>Insights<small>Views</small></h6><div class="mb-dn"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.9155" fill="none" stroke="#4B0FD8" stroke-width="3.6" stroke-dasharray="85.2 14.8" transform="rotate(-90 18 18)"/><circle cx="18" cy="18" r="15.9155" fill="none" stroke="#C32AC0" stroke-width="3.6" stroke-dasharray="14.8 85.2" stroke-dashoffset="-85.2" transform="rotate(-90 18 18)"/></svg><div><b>51,446</b><span>Views</span></div></div><div class="mb-lg"><span><i style="background:#C32AC0"></i>Followers<b>14.8%</b></span><span><i style="background:#4B0FD8"></i>Non-followers<b>85.2%</b></span></div></div><div class="mb-card"><h6>Recent posts</h6><div class="mb-th"><img src="פיד/web/1-4a47a0.webp" alt=""><img src="פיד/web/post-601520.webp" alt=""><img src="פיד/web/2-bfcf32.webp" alt=""></div></div><div class="mb-nav"><span class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg><small>Home</small></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v15H4zM4 10h16M9 3v4M15 3v4"/></svg><small>Planner</small></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/></svg><small>Inbox</small></span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 20V10M12 20V4M19 20v-7"/></svg><small>Insights</small></span></div></div></div></div></div>
     </div>
     <div class="sk-cloud">
     <div class="fl tile zoom claude" style="--n:0;--l:1.5em;--t:15em;--r:6deg;--d:2;--w:4.8em;--ox:27.1em;--oy:9.6em;--bd:5.3s;--bl:-1.3s;--br:1.6deg" tabindex="0" role="img" aria-label="Claude"><span class="px"><span class="fi"><span class="ic"><img src="כלים/קלוד.jpg" alt="" loading="lazy" decoding="async"></span><span class="tip">Claude</span></span></span></div> <div class="fl tile " style="--n:1;--l:7.5em;--t:18.5em;--r:-7deg;--d:1.5;--w:4.8em;--ox:21.1em;--oy:6.1em;--bd:6.0s;--bl:-2.6s;--br:-1.6deg" tabindex="0" role="img" aria-label="ChatGPT (GPT)"><span class="px"><span class="fi"><span class="ic"><img src="כלים/ChatGPT-Logo.svg.webp" alt="" loading="lazy" decoding="async"></span><span class="tip">ChatGPT (GPT)</span></span></span></div> <div class="fl tile " style="--n:2;--l:1.2em;--t:23em;--r:5deg;--d:1.9;--w:4.8em;--ox:27.4em;--oy:1.6em;--bd:6.7s;--bl:-3.9s;--br:1.6deg" tabindex="0" role="img" aria-label="Gemini"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/gemini.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Gemini</span></span></span></div> <div class="fl tile app" style="--n:3;--l:7.8em;--t:26.5em;--r:-6deg;--d:1.7;--w:4.8em;--ox:20.8em;--oy:-1.9em;--bd:7.4s;--bl:-0.2s;--br:-1.6deg" tabindex="0" role="img" aria-label="Higgsfield AI"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/higgsfield.png" alt="" loading="lazy" decoding="async"></span><span class="tip">Higgsfield AI</span></span></span></div> <div class="fl tile app" style="--n:4;--l:1.5em;--t:31em;--r:-8deg;--d:1.6;--w:4.8em;--ox:27.1em;--oy:-6.4em;--bd:5.1s;--bl:-1.5s;--br:1.6deg" tabindex="0" role="img" aria-label="Canva"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/canva.png" alt="" loading="lazy" decoding="async"></span><span class="tip">Canva</span></span></span></div> <div class="fl tile " style="--n:5;--l:7.2em;--t:34.5em;--r:7deg;--d:1.8;--w:4.8em;--ox:21.4em;--oy:-9.9em;--bd:5.8s;--bl:-2.8s;--br:-1.6deg" tabindex="0" role="img" aria-label="CapCut"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/capcut.png" alt="" loading="lazy" decoding="async"></span><span class="tip">CapCut</span></span></span></div> <div class="fl tile app" style="--n:6;--l:1.2em;--t:39.5em;--r:-6deg;--d:2;--w:4.8em;--ox:27.4em;--oy:-14.9em;--bd:6.5s;--bl:-4.1s;--br:1.6deg" tabindex="0" role="img" aria-label="InShot"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/inshot.png" alt="" loading="lazy" decoding="async"></span><span class="tip">InShot</span></span></span></div> <div class="fl tile app" style="--n:7;--l:7.5em;--t:42.5em;--r:6deg;--d:1.5;--w:4.8em;--ox:21.1em;--oy:-17.9em;--bd:7.2s;--bl:-0.4s;--br:-1.6deg" tabindex="0" role="img" aria-label="Adobe Lightroom"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/lightroom.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Adobe Lightroom</span></span></span></div> <div class="fl tile app" style="--n:8;--l:2.5em;--t:47.5em;--r:-5deg;--d:1.9;--w:4.8em;--ox:26.1em;--oy:-22.9em;--bd:4.9s;--bl:-1.7s;--br:1.6deg" tabindex="0" role="img" aria-label="Adobe Express"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/adobe-express.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Adobe Express</span></span></span></div> <div class="fl tile " style="--n:9;--l:25.5em;--t:6.5em;--r:-6deg;--d:1.6;--w:4.8em;--ox:3.1em;--oy:18.1em;--bd:5.6s;--bl:-3s;--br:-1.6deg" tabindex="0" role="img" aria-label="Gmail"><span class="px"><span class="fi"><span class="ic"><img src="כלים/GMAIL LOGO.png" alt="" loading="lazy" decoding="async"></span><span class="tip">Gmail</span></span></span></div> <div class="fl tile " style="--n:10;--l:31.5em;--t:1.2em;--r:7deg;--d:2;--w:4.8em;--ox:-2.9em;--oy:23.4em;--bd:6.3s;--bl:-4.3s;--br:1.6deg" tabindex="0" role="img" aria-label="Outlook"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/outlook.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Outlook</span></span></span></div> <div class="fl tile " style="--n:11;--l:37.5em;--t:6.2em;--r:-5deg;--d:1.5;--w:4.8em;--ox:-8.9em;--oy:18.4em;--bd:7.0s;--bl:-0.6s;--br:-1.6deg" tabindex="0" role="img" aria-label="Google Drive"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/google-drive.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Google Drive</span></span></span></div> <div class="fl tile " style="--n:12;--l:43.5em;--t:1.2em;--r:6deg;--d:1.9;--w:4.8em;--ox:-14.9em;--oy:23.4em;--bd:4.7s;--bl:-1.9s;--br:1.6deg" tabindex="0" role="img" aria-label="Google Docs"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/google-docs.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Google Docs</span></span></span></div> <div class="fl tile " style="--n:13;--l:49.5em;--t:6.2em;--r:-7deg;--d:1.7;--w:4.8em;--ox:-20.9em;--oy:18.4em;--bd:5.4s;--bl:-3.2s;--br:-1.6deg" tabindex="0" role="img" aria-label="Notion"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/notion.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Notion</span></span></span></div> <div class="fl tile " style="--n:14;--l:55.5em;--t:1.2em;--r:5deg;--d:2;--w:4.8em;--ox:-26.9em;--oy:23.4em;--bd:6.1s;--bl:-4.5s;--br:1.6deg" tabindex="0" role="img" aria-label="Google Analytics 4"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/ga4.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Google Analytics 4</span></span></span></div> <div class="fl tile " style="--n:15;--l:61.5em;--t:6.2em;--r:-6deg;--d:1.5;--w:4.8em;--ox:-32.9em;--oy:18.4em;--bd:6.8s;--bl:-0.8s;--br:-1.6deg" tabindex="0" role="img" aria-label="Google Trends"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/google-trends.png" alt="" loading="lazy" decoding="async"></span><span class="tip">Google Trends</span></span></span></div> <div class="fl tile zoom meta" style="--n:16;--l:60em;--t:14.5em;--r:6deg;--d:2.1;--w:4.8em;--ox:-31.4em;--oy:10.1em;--bd:7.5s;--bl:-2.1s;--br:1.6deg" tabindex="0" role="img" aria-label="Meta Business Suite · Meta Ads Manager"><span class="px"><span class="fi"><span class="ic"><img src="כלים/META LOGO.jpg" alt="" loading="lazy" decoding="async"></span><span class="tip">Meta Business Suite · Meta Ads Manager</span></span></span></div> <div class="fl tile app" style="--n:17;--l:65.5em;--t:18em;--r:-7deg;--d:1.7;--w:4.8em;--ox:-36.9em;--oy:6.6em;--bd:5.2s;--bl:-3.4s;--br:-1.6deg" tabindex="0" role="img" aria-label="Instagram"><span class="px"><span class="fi"><span class="ic"><img src="כלים/אינסטגרם לוגו.png" alt="" loading="lazy" decoding="async"></span><span class="tip">Instagram</span></span></span></div> <div class="fl tile " style="--n:18;--l:60.2em;--t:22.5em;--r:7deg;--d:1.5;--w:4.8em;--ox:-31.6em;--oy:2.1em;--bd:5.9s;--bl:-4.7s;--br:1.6deg" tabindex="0" role="img" aria-label="Facebook"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/facebook.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Facebook</span></span></span></div> <div class="fl tile app" style="--n:19;--l:65.5em;--t:26.5em;--r:-6deg;--d:1.9;--w:4.8em;--ox:-36.9em;--oy:-1.9em;--bd:6.6s;--bl:-1s;--br:-1.6deg" tabindex="0" role="img" aria-label="LinkedIn"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/linkedin.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">LinkedIn</span></span></span></div> <div class="fl tile " style="--n:20;--l:60.2em;--t:31em;--r:5deg;--d:1.6;--w:4.8em;--ox:-31.6em;--oy:-6.4em;--bd:7.3s;--bl:-2.3s;--br:1.6deg" tabindex="0" role="img" aria-label="YouTube"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/youtube.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">YouTube</span></span></span></div> <div class="fl tile app" style="--n:21;--l:65.5em;--t:35em;--r:-7deg;--d:2;--w:4.8em;--ox:-36.9em;--oy:-10.4em;--bd:5.0s;--bl:-3.6s;--br:-1.6deg" tabindex="0" role="img" aria-label="TikTok Creative Center · TikTok Ads Manager"><span class="px"><span class="fi"><span class="ic"><img src="כלים/טיקטוק לוגו.png" alt="" loading="lazy" decoding="async"></span><span class="tip">TikTok Creative Center · TikTok Ads Manager</span></span></span></div> <div class="fl tile " style="--n:22;--l:60.2em;--t:39.5em;--r:6deg;--d:1.4;--w:4.8em;--ox:-31.6em;--oy:-14.9em;--bd:5.7s;--bl:-4.9s;--br:1.6deg" tabindex="0" role="img" aria-label="Pinterest"><span class="px"><span class="fi"><span class="ic"><img src="כישורים/logos/pinterest.svg" alt="" loading="lazy" decoding="async"></span><span class="tip">Pinterest</span></span></span></div>
@@ -1526,7 +1531,6 @@ html.win-open{overflow:hidden}
   <div class="about-grid">
     <div class="about-pic reveal has-img"><img src="תמונות/About Moriya.png" alt="מוריה מימון" loading="lazy"></div>
     <div class="reveal">
-      <div class="eyebrow lt">About Moriya</div>
       <h2>נעים להכיר</h2>
       <div class="role">מוריה מימון · אסטרטגית סושיאל ודיגיטל · מנהלת סושיאל · קריאייטיב ותוכן</div>
       <p>הקריירה שלי התחילה בעולם הביטוח התאגידי, שם למדתי להבין צרכים עסקיים, לעבוד עם ארגונים ולנהל תהליכים מורכבים. אחרי כמעט עשור בחרתי לקחת את הניסיון הזה לעולם השיווק והדיגיטל.</p>
@@ -1539,7 +1543,6 @@ html.win-open{overflow:hidden}
 
 <!-- THE INVITATION -->
 <section class="closing" id="contact">
-  <div class="eyebrow reveal lt">The Invitation</div>
   <h2 class="reveal lt">LET'S BUILD<br>A BRAND PEOPLE <em>CHOOSE</em></h2>
   <a class="btn btn-light reveal" href="https://wa.me/972509201625?text=%D7%94%D7%99%D7%99%20%D7%9E%D7%95%D7%A8%D7%99%D7%94%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%9D%20%D7%A9%D7%9C%D7%9A." target="_blank" rel="noopener" data-cursor style="margin-top:38px">בואו נדבר </a>
   <div class="contact reveal">
@@ -2232,6 +2235,8 @@ if(waFab&&waFooter){
   caps.forEach(function(c){c.addEventListener('click',function(){set(c.dataset.svc);});});
   pa.addEventListener('click',function(e){var t=document.getElementById('services'); if(!t) return; e.preventDefault(); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});});
 })();
+/* brands row: duplicate the set once so the sideways drift loops without a jump */
+(function(){var t=document.querySelector('.logo-track'); if(!t) return; var s=t.querySelector('.logo-set'); if(!s||t.children.length>1) return; var c=s.cloneNode(true); c.setAttribute('aria-hidden','true'); c.querySelectorAll('img').forEach(function(i){i.alt='';i.loading='eager';}); t.appendChild(c);})();
 </script>
 </body>
 </html>
