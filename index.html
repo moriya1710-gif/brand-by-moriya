@@ -1252,6 +1252,179 @@ html.win-open{overflow:hidden}
 /* RESULTS: the same rounded card as the gallery, on cream. The tiles inside keep their size. */
 .rs{background:radial-gradient(60% 50% at 8% 0%,rgba(201,167,170,.4),transparent 70%),radial-gradient(50% 50% at 96% 100%,rgba(106,30,45,.13),transparent 70%),#F3ECE4;padding:clamp(24px,4vw,56px) clamp(8px,1.2vw,22px)}
 .rs-stage{border-radius:clamp(24px,3.4vw,40px);isolation:isolate;background:radial-gradient(120% 90% at 85% 0%,rgba(92,26,46,.6),transparent 55%),radial-gradient(90% 80% at 10% 100%,rgba(199,154,151,.1),transparent 60%),#131011;box-shadow:0 50px 80px -50px rgba(43,43,43,.55)}
+
+/* ==========================================================================
+   REDESIGN PROPOSAL v1  (_redesign.html only - a proposal to look at, NOT a final design system)
+   Cream #FAF8F5 base. Cards on cream (bento), glass + ellipses, macOS/iOS windows,
+   a little Y2K chrome, scrapbook stickers, small micro-interactions.
+   Hero, Gallery and Folders keep their own design; only their background becomes the shared cream.
+   ========================================================================== */
+:root{
+  --rd-cream:#FAF8F5;--rd-stone:#E6E0DD;--rd-burg:#6A1E2D;--rd-burg-deep:#4C1722;--rd-char:#2B2B2B;--rd-rose:#C9A7AA;
+  --rd-sky:#BFD7EA;--rd-pink:#F2C4CE;--rd-champ:#C8A97E;--rd-sage:#C9D8B6;
+  --rd-gap:clamp(8px,1.2vw,22px);--rd-r:clamp(26px,3.4vw,40px);
+  --rd-wine:linear-gradient(160deg,#6A1E2D 0%,#3B131B 58%,#2C1016 100%);
+  --rd-chrome:linear-gradient(135deg,#fff 0%,#d8dce2 26%,#fff 46%,#b7bcc6 72%,#f5f6f8 100%);
+  --rd-shadow:0 30px 60px -34px rgba(43,43,43,.45);
+}
+body{background:var(--rd-cream);color:var(--rd-char)}
+.bg-flow{display:none}
+.cover.hz{--hz-cream:#FAF8F5}
+section{scroll-margin-top:84px}
+
+/* ---- floating glass menu (an ellipse, like the iOS / macOS bars) ---- */
+nav{top:10px;left:50%;right:auto;transform:translateX(-50%);width:min(1240px,calc(100% - 2*var(--rd-gap)));padding:8px 14px 8px 22px;border-radius:999px;
+  background:rgba(250,248,245,.62);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);
+  border:1px solid rgba(255,255,255,.85);box-shadow:0 16px 36px -20px rgba(43,43,43,.45),inset 0 1px 0 #fff;transition:background .4s,box-shadow .4s}
+nav.scrolled{background:rgba(250,248,245,.88)}
+.brand{color:var(--rd-char)}
+.brand small{color:var(--rd-burg)}
+.nav-links a{color:var(--rd-char)}
+.nav-links a::after{background:var(--rd-burg)}
+
+/* ---- every dark band is a rounded card sitting on the cream ---- */
+.hz-feedwrap{background:none}
+.feed-pin{isolation:isolate}
+.feed-pin::before{content:"";position:absolute;inset:var(--rd-gap);border-radius:var(--rd-r);z-index:-1;box-shadow:var(--rd-shadow);
+  background:radial-gradient(55% 40% at 22% 8%,rgba(92,26,46,.5),transparent 60%),radial-gradient(48% 40% at 80% 90%,rgba(62,15,30,.45),transparent 60%),linear-gradient(180deg,#131011,#1E1A1B 50%,#131011)}
+#brands.trusted{margin:var(--rd-gap);border-radius:var(--rd-r);background:var(--rd-wine);overflow:hidden;position:relative;box-shadow:var(--rd-shadow)}
+#brands.trusted::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 80% at 90% 0%,rgba(200,169,126,.22),transparent 60%);pointer-events:none}
+.bts{margin:var(--rd-gap);border-radius:var(--rd-r);background:radial-gradient(60% 55% at 85% 0%,rgba(200,169,126,.2),transparent 60%),var(--rd-wine);box-shadow:var(--rd-shadow)}
+.closing{margin:var(--rd-gap);border-radius:var(--rd-r);background:radial-gradient(60% 50% at 82% 0%,rgba(200,169,126,.22),transparent 60%),var(--rd-wine);box-shadow:var(--rd-shadow)}
+footer{margin:0 var(--rd-gap) var(--rd-gap);border-radius:28px;background:#2C1016;border:0}
+
+/* ---- sections that sit on the plain cream ---- */
+.intro,.bl,.about{background:none}
+.work,.rs,.desk{background-color:transparent;background-image:none}
+.desk{background-image:radial-gradient(circle,rgba(43,43,43,.09) 1px,transparent 1.4px),radial-gradient(70% 60% at 85% 10%,rgba(201,167,170,.28),transparent 70%);background-size:26px 26px,100% 100%}
+.desk::before,.desk::after{display:none}
+.bl{background-image:radial-gradient(55% 30% at 10% 3%,rgba(201,167,170,.22),transparent 70%)}
+.work{background-image:radial-gradient(55% 40% at 6% 0%,rgba(201,167,170,.3),transparent 70%),radial-gradient(45% 40% at 98% 90%,rgba(191,215,234,.45),transparent 70%)}
+.rs{background-image:radial-gradient(55% 40% at 6% 0%,rgba(201,167,170,.3),transparent 70%),radial-gradient(45% 40% at 98% 90%,rgba(191,215,234,.45),transparent 70%)}
+
+/* ---- intro: text in a glass card, portrait in a window, a few stickers ---- */
+.intro{position:relative;isolation:isolate}
+.intro::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(40% 50% at 12% 30%,rgba(201,167,170,.38),transparent 70%),radial-gradient(34% 44% at 90% 72%,rgba(191,215,234,.55),transparent 70%)}
+.intro-lines{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.95);border-radius:34px;padding:clamp(24px,3.2vw,44px);box-shadow:var(--rd-shadow),inset 0 1px 0 #fff}
+.intro .eyebrow{color:var(--rd-burg)}
+.intro-lines .intro-title{color:var(--rd-char)}
+.intro-lines .intro-subtitle{color:var(--rd-burg)}
+.intro-lines .intro-body{color:#473d3f}
+.intro-photo{position:relative;background:#fff;border-radius:30px;padding:46px 10px 10px;box-shadow:var(--rd-shadow),inset 0 0 0 1px rgba(43,43,43,.06);transform-style:preserve-3d;will-change:transform}
+.intro-photo::before{content:"";position:absolute;top:18px;left:22px;width:11px;height:11px;border-radius:50%;background:var(--rd-rose);box-shadow:18px 0 0 var(--rd-champ),36px 0 0 var(--rd-sage)}
+.intro-photo img{border-radius:20px;box-shadow:none}
+
+/* ---- ai strip ---- */
+.ai-projects{padding-block:clamp(28px,4vw,52px)}
+.ai-track img{border-radius:24px;border:3px solid rgba(255,255,255,.95);box-shadow:0 20px 34px -22px rgba(43,43,43,.55);background:#fff}
+
+
+/* ---- behind the marketing: chips become tappable like/share/views toggles ---- */
+.bts-chip{cursor:pointer;background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.3);transition:background .35s,color .35s,transform .35s}
+.bts-chip:hover{transform:translateY(-2px);background:rgba(255,255,255,.18)}
+.bts-chip.on{background:#fff;color:var(--rd-burg);border-color:#fff}
+.bts-chip.on svg{stroke:var(--rd-burg);fill:rgba(106,30,45,.18)}
+
+/* ---- skills ---- */
+.sk{color:var(--rd-char);background:radial-gradient(60% 50% at 92% 0%,rgba(191,215,234,.6),transparent 70%),radial-gradient(50% 40% at 0% 100%,rgba(242,196,206,.38),transparent 70%)}
+.sk-head h2{color:var(--rd-char)}
+.sk-kick{color:var(--rd-burg)}
+.sk-kick i{background:var(--rd-burg)}
+.sk-sub{color:#5b5153}
+
+/* ---- about: blurred portrait behind a glass card ---- */
+.about{position:relative;isolation:isolate;overflow:hidden}
+.about::before{content:"";position:absolute;inset:-60px;z-index:-2;background:url("תמונות/About Moriya.png") center 30%/cover;filter:blur(46px) saturate(1.2);opacity:.55}
+.about::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(250,248,245,.55),rgba(250,248,245,.7))}
+.about-grid>.reveal:not(.about-pic){background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.95);border-radius:34px;padding:clamp(22px,3vw,42px);box-shadow:var(--rd-shadow),inset 0 1px 0 #fff}
+.about-pic.has-img{background:#fff;border-radius:30px;box-shadow:var(--rd-shadow),inset 0 0 0 1px rgba(43,43,43,.06);position:relative}
+.about-pic.has-img img{border-radius:22px}
+
+/* ---- closing: contact links as iOS notification banners ---- */
+.closing{position:relative}
+.closing .contact{display:flex;flex-direction:column;align-items:stretch;gap:10px;width:min(430px,100%);margin:34px auto 0}
+.closing .contact a{display:flex;align-items:center;gap:14px;padding:13px 18px 13px 14px;border-radius:22px;color:#fff;text-decoration:none;text-align:start;
+  background:rgba(255,255,255,.13);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.3);box-shadow:0 18px 34px -22px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .4s cubic-bezier(.2,.7,.2,1),background .3s}
+.closing .contact a:hover{transform:translateY(-3px) scale(1.015);background:rgba(255,255,255,.2)}
+.closing .contact a::before{content:"";flex:none;width:38px;height:38px;border-radius:10px;background:center/contain no-repeat}
+.closing .contact a[href^="mailto"]::before{background-image:url("כלים/GMAIL LOGO.png");background-size:86%}
+.closing .contact a[href^="tel"]::before{background-image:url("כלים/whatsapp-icon.png")}
+.closing .contact a[href*="instagram"]::before{background-image:url("כלים/אינסטגרם לוגו.png")}
+
+/* ---- scrapbook stickers + parallax (decorative only, no text) ---- */
+.stk{position:absolute;z-index:4;pointer-events:none;translate:calc(var(--px,0)*var(--k,10)*1px) calc(var(--py,0)*var(--k,10)*1px);transition:translate .25s ease-out}
+.stk svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 8px 10px rgba(43,43,43,.28))}
+.stk-cursor{width:34px}
+.stk-spark{width:30px}
+.stk-heart{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid #fff;box-shadow:0 14px 24px -12px rgba(106,30,45,.55)}
+.stk-heart svg{width:22px;filter:none}
+.stk-note{width:clamp(96px,9vw,132px);aspect-ratio:1;border-radius:3px 3px 20px 3px;background:linear-gradient(135deg,#F7D6DD,#F2C4CE);box-shadow:0 20px 28px -16px rgba(43,43,43,.45);rotate:-7deg}
+.stk-note::before{content:"";position:absolute;inset:22% 16% auto;height:46%;background:repeating-linear-gradient(180deg,rgba(106,30,45,.28) 0 3px,transparent 3px 14px);border-radius:2px}
+.stk-note::after{content:"";position:absolute;top:-9px;left:50%;width:46px;height:18px;margin-left:-23px;background:rgba(255,255,255,.65);rotate:-3deg;box-shadow:0 2px 4px rgba(43,43,43,.12)}
+.stk-orb{width:clamp(70px,8vw,120px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0 9%,#e9edf3 18%,#9fb3c9 46%,#5a6f8a 70%,#2b3445);box-shadow:inset -8px -10px 18px rgba(0,0,0,.28),0 22px 30px -14px rgba(0,0,0,.5)}
+.stk-orb::after{content:"";position:absolute;left:18%;top:12%;width:36%;height:22%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.85),transparent);rotate:-24deg}
+.stk-arrow{width:clamp(70px,8vw,110px);rotate:180deg}
+@media(max-width:900px){.stk{display:none}}
+@media(prefers-reduced-motion:reduce){.stk{translate:none;transition:none}}
+
+/* ---- mobile: calmer cards ---- */
+@media(max-width:700px){
+  nav{padding:7px 10px 7px 16px}
+  .intro-lines,.about-grid>.reveal:not(.about-pic){padding:22px 18px;border-radius:26px}
+  .intro-photo{border-radius:24px;padding:40px 8px 8px}
+}
+
+/* ---- v2: the mission line is now the gallery's main title, the old title sits in a small burgundy ellipse ---- */
+.work-hd{margin-bottom:clamp(26px,4vw,44px)}
+.work .sec-hd h2.work-title{font-family:var(--serif-he);font-weight:500;font-size:clamp(1rem,3.7vw,2.7rem);line-height:1.25;letter-spacing:-.02em;white-space:nowrap;color:var(--rd-char);margin:0 auto}
+.work .sec-hd h2.work-title b{font-weight:800;color:var(--rd-burg);display:inline-block;padding:.04em .55em .1em;border-radius:999px;border:1.5px solid transparent;background:linear-gradient(180deg,#fff,#F3EEE8) padding-box,var(--rd-chrome) border-box;box-shadow:0 16px 30px -16px rgba(106,30,45,.5),inset 0 1px 0 #fff}
+.work-hd .mission-note{margin:clamp(14px,2vw,22px) auto 0;max-width:52ch;color:#5b5153;font:400 1.05rem/1.7 var(--body)}
+.work-sub{margin-top:clamp(18px,2.6vw,28px)}
+.work-pill{display:inline-block;margin:0;padding:.55em 1.7em .6em;border-radius:999px;background:linear-gradient(135deg,#6A1E2D 0%,#4C1722 55%,#2C1016 100%);color:#F3ECE4;font-family:var(--serif-he);font-weight:700;font-size:clamp(.95rem,2vw,1.35rem);line-height:1.35;box-shadow:0 18px 30px -18px rgba(106,30,45,.7),inset 0 1px 0 rgba(255,255,255,.25)}
+.work-pill .line1{white-space:nowrap}
+.work-pill em{font-family:var(--serif-he);font-style:normal;font-weight:800;color:var(--rd-pink)}
+@media(max-width:700px){.work .sec-hd h2.work-title{white-space:normal;text-wrap:balance;font-size:clamp(1.25rem,6vw,1.8rem)}}
+
+/* ---- v2: the moving AI images sit in the same burgundy card as the brands ---- */
+.ai-projects{margin:var(--rd-gap);border-radius:var(--rd-r);background:radial-gradient(50% 80% at 90% 0%,rgba(200,169,126,.22),transparent 60%),var(--rd-wine);box-shadow:var(--rd-shadow);overflow:hidden;padding-block:clamp(30px,4.4vw,56px)}
+.ai-marquee{margin-top:0}
+
+/* ---- v2: hero chips - phone emoji for social management, brain emoji for strategy ---- */
+.hz .hz-caps .hz-cap[data-svc="manage"]::before{background-image:url("אלמנטים/cut/emo-phone.png")}
+.hz .hz-caps .hz-cap[data-svc="strategy"]::before{background-image:url("אלמנטים/cut/emo-brain.png")}
+
+/* ---- v3: "where do we start" - the closing sentence in a gentle burgundy glass ellipse (cream text) ---- */
+.bl-after .bl-close{position:relative;overflow:hidden;color:#F3ECE4;padding:clamp(24px,3.2vw,40px) clamp(28px,4.6vw,60px);border-radius:clamp(40px,6vw,72px);
+  background:linear-gradient(135deg,rgba(106,30,45,.9) 0%,rgba(76,23,34,.9) 55%,rgba(44,16,22,.92) 100%);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.24);
+  box-shadow:0 30px 50px -30px rgba(106,30,45,.7),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -18px 30px -24px rgba(0,0,0,.35)}
+.bl-after .bl-close::before{content:"";position:absolute;left:8%;right:8%;top:0;height:46%;border-radius:0 0 60% 60%/0 0 100% 100%;background:linear-gradient(180deg,rgba(255,255,255,.2),transparent);pointer-events:none}
+.bl-after .bl-close b{color:#fff;font-weight:800}
+
+/* ---- v3: the social-shoot collage replaces the square portrait; a pixel hand clicks from object to object ---- */
+.bl-collage{position:relative;justify-self:center;width:min(100%,380px);aspect-ratio:1/1.02}
+.bl-collage img{position:absolute;display:block;height:auto;filter:drop-shadow(0 14px 18px rgba(43,43,43,.28));user-select:none;-webkit-user-drag:none}
+.cl-mac{left:8%;top:38%;width:72%;rotate:-5deg;z-index:2;animation:clPop 14s ease-in-out 3.78s infinite}
+.cl-led{left:0;top:0;width:26%;rotate:-10deg;z-index:3;animation:clPop 14s ease-in-out .98s infinite}
+.cl-clap{right:0;top:2%;width:42%;rotate:8deg;z-index:3;animation:clPop 14s ease-in-out 6.58s infinite}
+.cl-rec{right:2%;bottom:2%;width:44%;rotate:-4deg;z-index:3;animation:clPop 14s ease-in-out 9.38s infinite}
+.cl-hand{width:14%;z-index:6;left:52%;top:104%;translate:-52% 0;transform-origin:50% 0;animation:clHand 14s ease-in-out infinite}
+@keyframes clPop{0%,10%,100%{scale:1}4%{scale:1.07}}
+@keyframes clHand{
+  0%{left:52%;top:104%;scale:1}
+  9%{left:13%;top:22%;scale:1} 11%{scale:.86} 13%{scale:1} 20%{left:13%;top:22%}
+  29%{left:42%;top:60%;scale:1} 31%{scale:.86} 33%{scale:1} 40%{left:42%;top:60%}
+  49%{left:80%;top:26%;scale:1} 51%{scale:.86} 53%{scale:1} 60%{left:80%;top:26%}
+  69%{left:74%;top:86%;scale:1} 71%{scale:.86} 73%{scale:1} 80%{left:74%;top:86%}
+  92%,100%{left:52%;top:104%;scale:1}
+}
+@media(max-width:900px){.bl-collage{order:-1;width:min(78%,330px);justify-self:center}}
+@media(prefers-reduced-motion:reduce){.cl-mac,.cl-led,.cl-clap,.cl-rec{animation:none}.cl-hand{animation:none;left:42%;top:60%}}
+
+/* ---- v3: results - Hebrew word in the glass bar, lighter dark halo behind it ---- */
+.rs-glow{background:radial-gradient(closest-side,rgba(19,16,17,.4),rgba(19,16,17,.22) 55%,transparent)}
+.rs-search{direction:rtl;padding:0 1.6em 0 1em}
+.rs-q{font-family:var(--body);letter-spacing:0;font-weight:600;text-align:start}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Gveret+Levin&display=swap" rel="stylesheet">
 <link rel="preload" href="hero/gsap.min.js" as="script">
@@ -1341,16 +1514,12 @@ html.win-open{overflow:hidden}
   </div>
 </section>
 
-<!-- THE MISSION -->
-<section class="statement light">
-  <h2 class="reveal line-mission">עסקים 🤝 <b>אסטרטגיית סושיאל</b> 🤝 מטרות עסקיות</h2>
-  <p class="reveal mission-note">ברגע שיש לכם תוכנית אסטרטגית ברורה, הדרך ליצירת הסרטונים הנכונים בשבילכם הופכת להרבה יותר קלה.</p>
-</section>
-
 <!-- SELECTED WORK -->
 <section class="work" id="work">
-  <div class="sec-hd reveal" style="text-align:center">
-    <h2><span class="line1">מאפיון לקוח ועד התוצאה הסופית</span><br><em>התוכן</em> 📸</h2>
+  <div class="sec-hd reveal work-hd" style="text-align:center">
+    <h2 class="work-title">עסקים 🤝 <b>אסטרטגיית סושיאל</b> 🤝 מטרות עסקיות</h2>
+    <p class="mission-note">ברגע שיש לכם תוכנית אסטרטגית ברורה, הדרך ליצירת הסרטונים הנכונים בשבילכם הופכת להרבה יותר קלה.</p>
+    <div class="work-sub"><h3 class="work-pill"><span class="line1">מאפיון לקוח ועד התוצאה הסופית</span><br><em>התוכן</em> 📸</h3></div>
   </div>
   <div class="vs reveal" id="vs">
     <div class="vs-card" id="vsCard">
@@ -1415,7 +1584,7 @@ html.win-open{overflow:hidden}
         <p>אבל כשוויראליות הופכת למטרה המרכזית,<br>קל לאבד את <b>המטרה העסקית</b> של התוכן.</p>
       </div>
     </div>
-    <div class="bl-polaroid reveal"><span class="bl-pin"></span><img src="תמונות/BELIEVE.png" alt="מוריה מימון" loading="lazy"><div class="hand">מוריה מימון</div></div>
+    <div class="bl-collage reveal" aria-hidden="true"><img class="cl-mac" src="אלמנטים/cut/sc-macbook.png" alt="" loading="lazy"><img class="cl-led" src="אלמנטים/cut/sc-led.png" alt="" loading="lazy"><img class="cl-clap" src="אלמנטים/cut/sc-clapper.png" alt="" loading="lazy"><img class="cl-rec" src="אלמנטים/cut/sc-rec.png" alt="" loading="lazy"><img class="cl-hand" src="אלמנטים/cut/sc-hand.png" alt="" loading="lazy"></div>
   </div>
 
   <div class="bl-ph reveal">
@@ -1482,7 +1651,7 @@ html.win-open{overflow:hidden}
 
 <!-- RESULTS -->
 <section class="results rs" id="results">
-  <h2 class="rs-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Result</h2>
+  <h2 class="rs-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">תוצאות</h2>
   <div class="rs-stage">
     <div class="rs-wall" aria-hidden="true">
       <div class="rs-col" style="--ci:0;--sp:96s;--dl:-0s"><div class="rs-t"><img src="תוצאות/thumbs/IMG_0746-1-.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_9702.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_0739.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_8985.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2481.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_0950.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/New-messages--4-.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2068.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2070.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_0746-1-.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_9702.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_0739.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_8985.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2481.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_0950.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/New-messages--4-.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2068.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2070.webp" alt="" loading="lazy" decoding="async"></div></div>
@@ -1497,7 +1666,7 @@ html.win-open{overflow:hidden}
       <div class="rs-col" style="--ci:9;--sp:100s;--dl:-57s"><div class="rs-t"><img src="תוצאות/thumbs/IMG_2479.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2070.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2080.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2082.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2484.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_0950.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/New-messages--3-.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2068.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2482.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2479.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2070.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2080.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2082.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2484.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_0950.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/New-messages--3-.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2068.webp" alt="" loading="lazy" decoding="async"></div><div class="rs-t"><img src="תוצאות/thumbs/IMG_2482.webp" alt="" loading="lazy" decoding="async"></div></div>
     </div>
     <div class="rs-vig"></div><div class="rs-glow"></div>
-    <div class="rs-search" role="img" aria-label="Search: RESULT"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="rs-q"><b class="tx"></b></span><span class="rs-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></div>
+    <div class="rs-search" role="img" aria-label="חיפוש: תוצאות"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span class="rs-q"><b class="tx"></b></span><span class="rs-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></div>
   </div>
 </section>
 
@@ -2015,7 +2184,7 @@ AI_IMAGES.concat(AI_IMAGES).forEach(function(src){
 /* progress + nav bg */
 var prog=document.getElementById('prog');
 addEventListener('scroll',function(){var h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
- document.getElementById('nav').style.background=scrollY>60?'rgba(19,16,17,.85)':'linear-gradient(180deg,rgba(19,16,17,.92),transparent)';});
+ document.getElementById('nav').classList.toggle('scrolled',scrollY>60);});
 
 /* cursor */
 var cur=document.getElementById('cursor');
@@ -2214,7 +2383,7 @@ if(waFab&&waFooter){
   var stage=s.querySelector('.rs-stage'), q=s.querySelector('.rs-q'), wall=s.querySelector('.rs-wall'); if(!stage||!q) return;
   var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
-  var WORD='RESULT';
+  var WORD='תוצאות';
   if(rm){ q.firstChild.textContent=WORD; stage.classList.add('on','done'); return; }
   /* every time the section is entered the bar types RESULT again; leaving it resets everything */
   var timers=[], running=false;
@@ -2442,6 +2611,46 @@ if(waFab&&waFooter){
 })();
 /* brands row: duplicate the set once so the sideways drift loops without a jump */
 (function(){var t=document.querySelector('.logo-track'); if(!t) return; var s=t.querySelector('.logo-set'); if(!s||t.children.length>1) return; var c=s.cloneNode(true); c.setAttribute('aria-hidden','true'); c.querySelectorAll('img').forEach(function(i){i.alt='';i.loading='eager';}); t.appendChild(c);})();
+</script>
+<script>
+/* REDESIGN PROPOSAL v1 - decorative stickers, mouse parallax, tilt, like-toggles (proposal only) */
+(function(){
+ var fine=matchMedia('(hover:hover) and (pointer:fine)').matches, reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var ICON={
+  cursor:'<svg viewBox="0 0 24 24"><path d="M4 2l15 9.5-6.2 1.3 3.7 7.2-2.9 1.5-3.7-7.3L4.5 18z" fill="#2B2B2B" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  spark:function(c){return '<svg viewBox="0 0 24 24"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="'+c+'" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>';},
+  heart:'<svg viewBox="0 0 24 24"><path d="M12 21s-7-4.3-9.3-8.7C1 8.6 2.3 5 6 5c2 0 3.4 1.1 4 2.1.6-1 2-2.1 4-2.1 3.7 0 5 3.6 3.3 7.3C19 16.7 12 21 12 21z" fill="#6A1E2D"/></svg>',
+  arrow:'<svg viewBox="0 0 120 70"><path d="M6 8c26 -4 64 2 84 30 6 8 9 16 9 24" fill="none" stroke="#6A1E2D" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 7"/><path d="M99 62l-9-13m9 13l11-11" fill="none" stroke="#6A1E2D" stroke-width="3.4" stroke-linecap="round"/></svg>'
+ };
+ function stk(parent,cls,html,css){
+  if(!parent) return;
+  var s=document.createElement('span'); s.className='stk '+cls; s.setAttribute('aria-hidden','true');
+  if(html) s.innerHTML=html; if(css) s.style.cssText=css;
+  parent.appendChild(s);
+ }
+ var q=function(s){return document.querySelector(s);};
+ stk(q('.intro-photo'),'stk-cursor',ICON.cursor,'right:-8px;bottom:36px;--k:14');
+ stk(q('.intro-photo'),'stk-heart',ICON.heart,'left:-22px;top:46%;--k:9');
+
+
+ var ap=q('.about-pic'); if(ap){ stk(ap,'stk-note','', 'left:-26px;top:-18px;--k:12'); stk(ap,'stk-cursor',ICON.cursor,'right:-6px;bottom:26px;--k:14'); }
+
+
+ if(fine&&!reduce){
+  var raf=0, mx=0, my=0;
+  document.addEventListener('pointermove',function(e){ mx=e.clientX/innerWidth*2-1; my=e.clientY/innerHeight*2-1; if(!raf) raf=requestAnimationFrame(function(){ raf=0; document.documentElement.style.setProperty('--px',mx.toFixed(3)); document.documentElement.style.setProperty('--py',my.toFixed(3)); }); },{passive:true});
+  [].forEach.call(document.querySelectorAll('.intro-photo,.about-pic.has-img'),function(el){
+   el.addEventListener('pointermove',function(e){ var r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5; el.style.transform='perspective(900px) rotateY('+(x*7).toFixed(2)+'deg) rotateX('+(-y*7).toFixed(2)+'deg)'; });
+   el.addEventListener('pointerleave',function(){ el.style.transform=''; });
+  });
+ }
+ /* the three chips are tappable like / share / views toggles */
+ [].forEach.call(document.querySelectorAll('.bts-chip'),function(c){
+  c.setAttribute('role','button'); c.setAttribute('tabindex','0'); c.setAttribute('aria-pressed','false');
+  function t(){ var on=c.classList.toggle('on'); c.setAttribute('aria-pressed',on?'true':'false'); }
+  c.addEventListener('click',t); c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); t(); } });
+ });
+})();
 </script>
 </body>
 </html>
