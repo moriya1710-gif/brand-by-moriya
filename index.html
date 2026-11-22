@@ -1425,6 +1425,36 @@ footer{margin:0 var(--rd-gap) var(--rd-gap);border-radius:28px;background:#2C101
 .rs-glow{background:radial-gradient(closest-side,rgba(19,16,17,.4),rgba(19,16,17,.22) 55%,transparent)}
 .rs-search{direction:rtl;padding:0 1.6em 0 1em}
 .rs-q{font-family:var(--body);letter-spacing:0;font-weight:600;text-align:start}
+
+/* ---- round 4: single-colour headings, notification cluster + iOS dock in the intro ---- */
+section.bts .bts-copy h2,section.bts .bts-copy h2 em{color:#FAF8F5}
+section.bl .bl-ph h3,section.bl .bl-ph h3 em,section.bl .bl-found h3,section.bl .bl-found h3 em{color:#2B2B2B}
+section.desk h2,section.desk h2 em{color:#2B2B2B}
+.intro{overflow-x:clip}
+.intro-photo img.intro-notify{aspect-ratio:auto;object-fit:contain;border-radius:0;box-shadow:none;width:62%}
+.intro-notify{position:absolute;z-index:4;pointer-events:none;width:62%;height:auto;left:-42%;bottom:2%;rotate:-4deg;filter:drop-shadow(0 14px 18px rgba(106,30,45,.2));animation:ntFloat 7s ease-in-out infinite}
+@keyframes ntFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.intro-dock{max-width:1000px;margin:clamp(34px,5vw,64px) auto 0}
+.intro-dock img{display:block;width:100%;height:auto;filter:drop-shadow(0 22px 26px rgba(43,43,43,.2));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.intro-dock:hover img{transform:translateY(-4px) scale(1.01)}
+@media(max-width:900px){.intro-notify{left:-6%;width:50%;bottom:-16%}}
+@media(prefers-reduced-motion:reduce){.intro-notify{animation:none}.intro-dock img{transition:none}}
+
+/* ---- round 5: smaller iOS dock, three small app icons beside the portrait ---- */
+.intro-dock{max-width:560px}
+.intro-photo .intro-apps{position:absolute;inset:0;z-index:4;pointer-events:none;display:block}
+.intro-photo .intro-apps img{position:absolute;display:block;width:clamp(40px,3.8vw,54px);height:auto;aspect-ratio:1;object-fit:cover;border-radius:24%;box-shadow:0 12px 20px -10px rgba(43,43,43,.45);animation:icFloat 6s ease-in-out infinite}
+.intro-photo .intro-apps img:nth-child(1){left:-7%;top:6%;rotate:-8deg}
+.intro-photo .intro-apps img:nth-child(2){right:-6%;top:36%;rotate:7deg;animation-delay:-2s;width:clamp(36px,3.3vw,48px)}
+.intro-photo .intro-apps img:nth-child(3){left:16%;bottom:-6%;rotate:5deg;animation-delay:-4s;width:clamp(38px,3.5vw,50px)}
+@keyframes icFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media(max-width:900px){.intro-dock{max-width:420px}}
+@media(prefers-reduced-motion:reduce){.intro-photo .intro-apps img{animation:none}}
+
+/* ---- round 6: the hello hand waves ---- */
+.intro-title .wave{display:inline-block;transform-origin:70% 75%;animation:hiWave 3.2s ease-in-out infinite}
+@keyframes hiWave{0%,60%,100%{transform:rotate(0)}8%{transform:rotate(16deg)}16%{transform:rotate(-10deg)}24%{transform:rotate(16deg)}32%{transform:rotate(-8deg)}40%{transform:rotate(12deg)}50%{transform:rotate(0)}}
+@media(prefers-reduced-motion:reduce){.intro-title .wave{animation:none}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Gveret+Levin&display=swap" rel="stylesheet">
 <link rel="preload" href="hero/gsap.min.js" as="script">
@@ -1492,7 +1522,7 @@ footer{margin:0 var(--rd-gap) var(--rd-gap);border-radius:28px;background:#2C101
 <section class="intro">
   <div class="intro-wrap">
     <div class="intro-lines">
-      <p class="reveal intro-title">היי, אני מוריה 👋</p>
+      <p class="reveal intro-title">היי, אני מוריה <span class="wave" aria-hidden="true">👋</span></p>
       <p class="reveal intro-subtitle">אסטרטגית סושיאל, משווקת ומנהלת סושיאל ודיגיטל לעסקים, חברות ומותגים גדולים.</p>
       <p class="reveal intro-body">עם ניסיון מקצועי בתחום מאז 2023.</p>
       <p class="reveal intro-body">🎯 אני מלווה עסקים בייעוץ ובבניית אסטרטגיות סושיאל, הפקת ימי צילום ותוכן שמחבר בין המותג למטרות העסקיות שלו.</p>
@@ -1501,8 +1531,9 @@ footer{margin:0 var(--rd-gap) var(--rd-gap);border-radius:28px;background:#2C101
       <p class="reveal intro-body">📌 אני מתחילה בהבנת המותג, הקהל והיעדים.</p>
       <p class="reveal intro-body">משם אני בונה אסטרטגיה, מפתחת רעיונות ומתרגמת אותם לתוכן סושיאל שמייצר חיבור ותוצאות 💸</p>
     </div>
-    <div class="intro-photo reveal"><img src="תמונות/d8e21b09-0494-447c-898f-54dab91ee730.png" alt="מוריה מימון" loading="lazy"></div>
+    <div class="intro-photo reveal"><img src="תמונות/d8e21b09-0494-447c-898f-54dab91ee730.png" alt="מוריה מימון" loading="lazy"><span class="stk intro-apps" aria-hidden="true" style="--k:10"><img src="כישורים/logos/instagram.png" alt="" loading="lazy"><img src="כישורים/logos/tiktok.png" alt="" loading="lazy"><img src="אלמנטים/cut/ic-meta.webp" alt="" loading="lazy"></span></div>
   </div>
+  <div class="intro-dock reveal" aria-hidden="true"><img src="אלמנטים/cut/sc-dock.webp" alt="" loading="lazy"></div>
 </section>
 
 <!-- AI PROJECTS -->
@@ -1740,7 +1771,6 @@ footer{margin:0 var(--rd-gap) var(--rd-gap);border-radius:28px;background:#2C101
   <div class="sk-stage">
     <div class="sk-head lt">
       <h2>Skills</h2>
-      <p class="sk-sub">From strategy and research to content creation, design and performance analysis.</p>
     </div>
     <div class="sk-dev">
       <div class="lp" aria-hidden="true">
@@ -2629,8 +2659,6 @@ if(waFab&&waFooter){
   parent.appendChild(s);
  }
  var q=function(s){return document.querySelector(s);};
- stk(q('.intro-photo'),'stk-cursor',ICON.cursor,'right:-8px;bottom:36px;--k:14');
- stk(q('.intro-photo'),'stk-heart',ICON.heart,'left:-22px;top:46%;--k:9');
 
 
  var ap=q('.about-pic'); if(ap){ stk(ap,'stk-note','', 'left:-26px;top:-18px;--k:12'); stk(ap,'stk-cursor',ICON.cursor,'right:-6px;bottom:26px;--k:14'); }
